@@ -1,1 +1,1 @@
-﻿# 第一次git托管  李芳蕊上线  宋江上线  BZW下线  BZW断线  BZW挂机
+﻿# 第一次git托管  李芳蕊上线  宋江上线  BZW下线  BZW挂机  BZW断线  BZW上线  BZW蓝屏  BZW下线  BZW死机  BZW注销
