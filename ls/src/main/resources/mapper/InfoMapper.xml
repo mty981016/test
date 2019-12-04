@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.ls.dao.InfoMapper">
+  <resultMap id="BaseResultMap" type="com.bdqn.ls.pojo.Info">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="levelid" jdbcType="INTEGER" property="levelid" />
+    <result column="typeid" jdbcType="INTEGER" property="typeid" />
+    <result column="xingge" jdbcType="VARCHAR" property="xingge" />
+    <result column="like" jdbcType="VARCHAR" property="like" />
+    <result column="xinzi" jdbcType="VARCHAR" property="xinzi" />
+    <result column="renzi" jdbcType="VARCHAR" property="renzi" />
+    <result column="gongsi" jdbcType="VARCHAR" property="gongsi" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="isgo" jdbcType="INTEGER" property="isgo" />
+    <result column="isrenzhi" jdbcType="INTEGER" property="isrenzhi" />
+  </resultMap>
+</mapper>

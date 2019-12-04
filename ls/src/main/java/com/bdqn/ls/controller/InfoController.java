@@ -1,0 +1,13 @@
+package com.bdqn.ls.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("info")
+public class InfoController {
+    @RequestMapping("toAdd")
+    public String toAdd(){
+        return "addinfo";
+    }
+}
