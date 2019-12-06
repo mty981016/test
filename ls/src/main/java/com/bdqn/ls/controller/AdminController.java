@@ -26,6 +26,7 @@ public class AdminController {
         Admin aa=asi.login(admin);
         if(aa!=null){
             session.setAttribute("admin",aa);
+
            return "adminBackground";
         }else{
            model.addAttribute("msg","用户名或密码错误");

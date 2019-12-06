@@ -20,4 +20,5 @@
     <result column="isgo" jdbcType="INTEGER" property="isgo" />
     <result column="isrenzhi" jdbcType="INTEGER" property="isrenzhi" />
   </resultMap>
+  <select id="findInfo" resultType="Info"></select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.bdqn.ls.pojo;
 
 import javax.persistence.*;
+import java.util.List;
 
 public class Admin {
     @Id
@@ -14,6 +15,16 @@ public class Admin {
     private String pwd;
 
     private Integer levelid;
+
+    public List<Info> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Info> likes) {
+        this.likes = likes;
+    }
+
+    private List<Info> likes;
 
     /**
      * @return id
