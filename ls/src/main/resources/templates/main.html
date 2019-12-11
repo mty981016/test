@@ -1,5 +1,5 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>后台管理</title>
@@ -10,7 +10,7 @@
             border-radius: 5px;margin-top: 20px
         }
         .tcList{list-style: none;float: left;border: #e6e6e6 solid 1px;
-            width: 18%;height: 180px;margin-left: 20px;
+            width: 22%;height: 180px;margin-left: 20px;
         }
         .ms{margin-top: 15px}
         .ms li{line-height: 30px}
@@ -74,7 +74,7 @@
             </fieldset>
             <ul>
                 <li class="tcList">
-                    <img th:src="${golist.getPhoto()}" alt="图片显示异常" width="130" height="180">
+                    <img th:src="${golist.getPhoto()}" alt="图片显示异常" style="margin-right: 10px;float: left" width="120" height="180">
                     <div style="display: inline-block">
                         <ul class="ms">
                             <li>姓名：<span th:text="${golist.getName()}"></span></li>
@@ -95,7 +95,7 @@
             </fieldset>
             <ul>
                 <li class="tcList">
-                    <img src="" alt="图片显示异常" width="130" height="180">
+                    <img src="" alt="图片显示异常" width="120" height="180" style="margin-right: 10px">
                     <div style="display: inline-block">
                         <ul class="ms">
                             <li>姓名：<span></span></li>

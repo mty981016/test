@@ -26,7 +26,7 @@ public class AdminController {
         Admin aa = asi.login(admin);
         if (aa != null) {
             session.setAttribute("admin", aa);
-            return "main";//调用config包下配置类所实现的视图解析器进行跳转
+            return "redirect:/info/tomain";//调用config包下配置类所实现的视图解析器进行跳转
         } else {
             model.addAttribute("msg", "用户名或密码错误");
             return "index";

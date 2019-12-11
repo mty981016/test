@@ -32,7 +32,8 @@ public class InfoController {
     private TypeService typeService;
     @RequestMapping("tomain")
     public String tomain(Model model){
-        model.addAttribute("golist",infoService.findOneById(1));
+
+        model.addAttribute("golist",infoService.findOneById(2));
         return "main";
     }
     @RequestMapping("tolist")
