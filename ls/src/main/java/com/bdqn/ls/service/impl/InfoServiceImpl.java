@@ -22,4 +22,10 @@ public class InfoServiceImpl implements InfoService {
     public int addInfo(Info info) {
         return infoMapper.insert(info);
     }
+
+    @Override
+    public Info findOneById(int id) {
+
+        return infoMapper.selectByPrimaryKey(id);
+    }
 }

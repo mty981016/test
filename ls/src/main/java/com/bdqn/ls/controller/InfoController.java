@@ -32,12 +32,11 @@ public class InfoController {
     private TypeService typeService;
     @RequestMapping("tomain")
     public String tomain(Model model){
-
+        model.addAttribute("golist",infoService.findOneById(1));
         return "main";
     }
     @RequestMapping("tolist")
     public String tolist(Model model){      //进入信息列表页面
-
         return "list";
     }
     @RequestMapping("toAdd")

@@ -8,4 +8,5 @@ import java.util.Map;
 public interface InfoService {
     List<Info> findInfo(int pageNo, int pageSize, Map<String,String> maps);
     int addInfo(Info info);
+    Info findOneById(int id);
 }
