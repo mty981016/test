@@ -14,22 +14,22 @@ import javax.servlet.http.HttpSession;
 public class AdminController {
     @Autowired
     private AdminServiceImpl asi;
+
     @RequestMapping("/")
-    public  String toLogin(){
+    public String toLogin() {
         return "index";
     }
 
     @RequestMapping("login")
-    public String login(Admin admin, HttpSession session, Model model){
-        model.addAttribute("msg","");
-        Admin aa=asi.login(admin);
-        if(aa!=null){
-            session.setAttribute("admin",aa);
-
-           return "redirect://info//main";
-        }else{
-           model.addAttribute("msg","用户名或密码错误");
-           return "index";
+    public String login(Admin admin, HttpSession session, Model model) {
+        model.addAttribute("msg", "");
+        Admin aa = asi.login(admin);
+        if (aa != null) {
+            session.setAttribute("admin", aa);
+            return "main";//调用config包下配置类所实现的视图解析器进行跳转
+        } else {
+            model.addAttribute("msg", "用户名或密码错误");
+            return "index";
         }
 
 
