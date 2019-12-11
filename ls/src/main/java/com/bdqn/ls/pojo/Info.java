@@ -1,6 +1,7 @@
 package com.bdqn.ls.pojo;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 public class Info {
@@ -29,12 +30,12 @@ public class Info {
     /**
      * 等级id
      */
-    private Integer levelid;
+    private Integer isgo;
 
     /**
      * 职业类型id
      */
-    private Integer typeid;
+    private Integer isrenzhi;
 
     /**
      * 性格
@@ -47,21 +48,6 @@ public class Info {
     private String ilike;
 
     /**
-     * 当前待遇水平
-     */
-    private String xinzi;
-
-    /**
-     * 当前任职职位
-     */
-    private String renzi;
-
-    /**
-     * 所属公司
-     */
-    private String gongsi;
-
-    /**
      * 详细描述
      */
     private String comment;
@@ -69,12 +55,12 @@ public class Info {
     /**
      * 是否想跳槽
      */
-    private Integer isgo;
+    private Integer levelid;
 
     /**
      * 是否在职
      */
-    private Integer isrenzhi;
+    private Integer typeid;
 
     private String photo;
 
@@ -88,14 +74,6 @@ public class Info {
 
     private Date birthday;
 
-    public String getIlike() {
-        return ilike;
-    }
-
-    public void setIlike(String ilike) {
-        this.ilike = ilike;
-    }
-
     public String getTypename() {
         return typename;
     }
@@ -106,8 +84,25 @@ public class Info {
 
     private String typename;
 
+    private List<Worklisi> worklisiList;
 
+    public List<Worklisi> getWorklisiList() {
+        return worklisiList;
+    }
 
+    public void setWorklisiList(List<Worklisi> worklisiList) {
+        this.worklisiList = worklisiList;
+    }
+
+    public Teachback getTeachback() {
+        return teachback;
+    }
+
+    public void setTeachback(Teachback teachback) {
+        this.teachback = teachback;
+    }
+
+    private Teachback teachback;
     /**
      * 获取主键标识
      *
@@ -183,37 +178,37 @@ public class Info {
     /**
      * 获取等级id
      *
-     * @return levelid - 等级id
+     * @return isgo - 等级id
      */
-    public Integer getLevelid() {
-        return levelid;
+    public Integer getIsgo() {
+        return isgo;
     }
 
     /**
      * 设置等级id
      *
-     * @param levelid 等级id
+     * @param isgo 等级id
      */
-    public void setLevelid(Integer levelid) {
-        this.levelid = levelid;
+    public void setIsgo(Integer isgo) {
+        this.isgo = isgo;
     }
 
     /**
      * 获取职业类型id
      *
-     * @return typeid - 职业类型id
+     * @return isrenzhi - 职业类型id
      */
-    public Integer getTypeid() {
-        return typeid;
+    public Integer getIsrenzhi() {
+        return isrenzhi;
     }
 
     /**
      * 设置职业类型id
      *
-     * @param typeid 职业类型id
+     * @param isrenzhi 职业类型id
      */
-    public void setTypeid(Integer typeid) {
-        this.typeid = typeid;
+    public void setIsrenzhi(Integer isrenzhi) {
+        this.isrenzhi = isrenzhi;
     }
 
     /**
@@ -237,9 +232,9 @@ public class Info {
     /**
      * 获取兴趣爱好
      *
-     * @return like - 兴趣爱好
+     * @return ilike - 兴趣爱好
      */
-    public String getLike() {
+    public String getIlike() {
         return ilike;
     }
 
@@ -248,62 +243,8 @@ public class Info {
      *
      * @param ilike 兴趣爱好
      */
-    public void setLike(String ilike) {
+    public void setIlike(String ilike) {
         this.ilike = ilike;
-    }
-
-    /**
-     * 获取当前待遇水平
-     *
-     * @return xinzi - 当前待遇水平
-     */
-    public String getXinzi() {
-        return xinzi;
-    }
-
-    /**
-     * 设置当前待遇水平
-     *
-     * @param xinzi 当前待遇水平
-     */
-    public void setXinzi(String xinzi) {
-        this.xinzi = xinzi;
-    }
-
-    /**
-     * 获取当前任职职位
-     *
-     * @return renzi - 当前任职职位
-     */
-    public String getRenzi() {
-        return renzi;
-    }
-
-    /**
-     * 设置当前任职职位
-     *
-     * @param renzi 当前任职职位
-     */
-    public void setRenzi(String renzi) {
-        this.renzi = renzi;
-    }
-
-    /**
-     * 获取所属公司
-     *
-     * @return gongsi - 所属公司
-     */
-    public String getGongsi() {
-        return gongsi;
-    }
-
-    /**
-     * 设置所属公司
-     *
-     * @param gongsi 所属公司
-     */
-    public void setGongsi(String gongsi) {
-        this.gongsi = gongsi;
     }
 
     /**
@@ -327,37 +268,37 @@ public class Info {
     /**
      * 获取是否想跳槽
      *
-     * @return isgo - 是否想跳槽
+     * @return levelid - 是否想跳槽
      */
-    public Integer getIsgo() {
-        return isgo;
+    public Integer getLevelid() {
+        return levelid;
     }
 
     /**
      * 设置是否想跳槽
      *
-     * @param isgo 是否想跳槽
+     * @param levelid 是否想跳槽
      */
-    public void setIsgo(Integer isgo) {
-        this.isgo = isgo;
+    public void setLevelid(Integer levelid) {
+        this.levelid = levelid;
     }
 
     /**
      * 获取是否在职
      *
-     * @return isrenzhi - 是否在职
+     * @return typeid - 是否在职
      */
-    public Integer getIsrenzhi() {
-        return isrenzhi;
+    public Integer getTypeid() {
+        return typeid;
     }
 
     /**
      * 设置是否在职
      *
-     * @param isrenzhi 是否在职
+     * @param typeid 是否在职
      */
-    public void setIsrenzhi(Integer isrenzhi) {
-        this.isrenzhi = isrenzhi;
+    public void setTypeid(Integer typeid) {
+        this.typeid = typeid;
     }
 
     /**

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.ls.dao.WorklisiMapper">
+  <resultMap id="BaseResultMap" type="com.bdqn.ls.pojo.Worklisi">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="timedian" jdbcType="VARCHAR" property="timedian" />
+    <result column="gongsi" jdbcType="VARCHAR" property="gongsi" />
+    <result column="zhiwei" jdbcType="VARCHAR" property="zhiwei" />
+    <result column="xinzhi" jdbcType="VARCHAR" property="xinzhi" />
+    <result column="infoid" jdbcType="INTEGER" property="infoid" />
+    <result column="comment" jdbcType="VARBINARY" property="comment" />
+  </resultMap>
+</mapper>

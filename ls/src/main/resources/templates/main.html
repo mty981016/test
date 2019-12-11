@@ -7,12 +7,12 @@
     <style type="text/css">
         .maindiv{
             height: 40%;width:98%;border: #e6e6e6 solid 1.5px;
-            border-radius: 5px;margin-top: 20px
+            border-radius: 5px;margin-top: 20px;background-color: rgb(242,242,242);
         }
-        .tcList{list-style: none;float: left;border: #e6e6e6 solid 1px;
-            width: 22%;height: 180px;margin-left: 20px;background-color: #e6e6e6;
+        .tcList{list-style: none;float: left;border: #e6e6e6 solid 1.5px;
+            width: 22%;height: 180px;margin-left: 23px;background-color: white;
         }
-        .ms{margin-top: 15px}
+        .ms{margin-top: 15px;}
         .ms li{line-height: 30px}
     </style>
 </head>
@@ -74,13 +74,13 @@
             </fieldset>
             <ul>
                 <li class="tcList" th:each="info:${mainlist1}">
-                    <img th:src="${info.getPhoto()}" alt="图片显示异常" style="margin-right: 10px;float: left" width="120" height="180">
+                    <img th:src="${info.getPhoto()}" alt="图片显示异常" style="margin-right: 10px;float: left;border-right: #e6e6e6 solid 1.5px" width="120" height="180">
                     <div style="display: inline-block">
                         <ul class="ms">
                             <li>姓名：<span th:text="${info.getName()}"></span></li>
                             <li>年龄：<span th:text="${info.getAge()}"></span></li>
                             <li>性别：<span th:text="${info.getSex()}"></span></li>
-                            <li>职业：<span th:text="${info.getTypeid()}"></span></li>
+                            <li>职业：<span th:text="${info.getTypename()}"></span></li>
                             <li>电话：<span th:text="${info.getPhone()}"></span></li>
                         </ul>
 
@@ -95,19 +95,19 @@
             </fieldset>
             <ul>
                 <li class="tcList" th:each="info:${mainlist2}">
-                    <img th:src="${info.getPhoto()}" alt="图片显示异常" style="margin-right: 10px;float: left" width="120" height="180">
+                    <img th:src="${info.getPhoto()}" alt="图片显示异常" style="margin-right: 10px;float: left;border-right: #e6e6e6 solid 1.5px" width="120" height="180">
                     <div style="display: inline-block">
                         <ul class="ms">
                             <li>姓名：<span th:text="${info.getName()}"></span></li>
                             <li>年龄：<span th:text="${info.getAge()}"></span></li>
                             <li>性别：<span th:text="${info.getSex()}"></span></li>
-                            <li>职业：<span th:text="${info.getTypeid()}"></span></li>
+                            <li>职业：<span th:text="${info.getTypename()}"></span></li>
                             <li>电话：<span th:text="${info.getPhone()}"></span></li>
                         </ul>
 
                     </div>
 
-                    </div>
+
                 </li>
             </ul>
         </div>
