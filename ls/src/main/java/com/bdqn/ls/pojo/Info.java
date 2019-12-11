@@ -88,6 +88,26 @@ public class Info {
 
     private Date birthday;
 
+    public String getIlike() {
+        return ilike;
+    }
+
+    public void setIlike(String ilike) {
+        this.ilike = ilike;
+    }
+
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename;
+    }
+
+    private String typename;
+
+
+
     /**
      * 获取主键标识
      *

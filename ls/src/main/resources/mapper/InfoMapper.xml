@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bdqn.ls.dao.InfoMapper">
+
+  <select id="mainlist1" resultType="com.bdqn.ls.pojo.Info">
+    SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id AND i.isgo=1 ORDER BY i.createtime DESC LIMIT 4
+
+  </select>
+
+  <select id="mainlist2" resultType="com.bdqn.ls.pojo.Info">
+    SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id AND i.isrenzhi=0 ORDER BY i.createtime DESC LIMIT 4
+
+  </select>
   <resultMap id="BaseResultMap" type="com.bdqn.ls.pojo.Info">
     <!--
       WARNING - @mbg.generated
@@ -26,4 +36,5 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="birthday" jdbcType="DATE" property="birthday" />
   </resultMap>
+
 </mapper>

@@ -28,4 +28,14 @@ public class InfoServiceImpl implements InfoService {
 
         return infoMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<Info> mainlist1() {
+        return infoMapper.mainlist1();
+    }
+
+    @Override
+    public List<Info> mainlist2() {
+        return infoMapper.mainlist2();
+    }
 }

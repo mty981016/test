@@ -33,7 +33,8 @@ public class InfoController {
     @RequestMapping("tomain")
     public String tomain(Model model){
 
-        model.addAttribute("golist",infoService.findOneById(2));
+        model.addAttribute("mainlist1",infoService.mainlist1());
+        model.addAttribute("mainlist2",infoService.mainlist2());
         return "main";
     }
     @RequestMapping("tolist")
