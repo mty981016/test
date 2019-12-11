@@ -32,6 +32,7 @@ public class InfoController {
     private TypeService typeService;
     @RequestMapping("tomain")
     public String tomain(Model model){
+
         return "main";
     }
     @RequestMapping("tolist")

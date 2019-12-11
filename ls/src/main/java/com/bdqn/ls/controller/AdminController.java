@@ -26,7 +26,7 @@ public class AdminController {
         if(aa!=null){
             session.setAttribute("admin",aa);
 
-           return "main";
+           return "redirect://info//main";
         }else{
            model.addAttribute("msg","用户名或密码错误");
            return "index";
