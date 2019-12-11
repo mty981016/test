@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/layui/css/layui.css" media="all"/>
 
 </head>
-<body class="layui-layout-body" style="background-color: #E6E6E6">
+<body class="layui-layout-body" style="background-color: white">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header" >
         <div class="layui-logo" style="font-size: 20px;line-height: 80px">人才信息管理</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left" style="line-height: 80px">
-            <li class="layui-nav-item"><a href="" style="font-size: 20px">控制台</a></li>
+            <li class="layui-nav-item"><a href="/in" style="font-size: 20px">首页</a></li>
             <li class="layui-nav-item"><a href=""  style="font-size: 20px">商品管理</a></li>
             <li class="layui-nav-item"><a href=""  style="font-size: 20px">用户</a></li>
             <li class="layui-nav-item">
@@ -25,10 +25,11 @@
             </li>
         </ul>
         <ul class="layui-nav layui-layout-right" style="line-height: 80px">
-            <li class="layui-nav-item" >
+            <li class="layui-nav-item" style="font-size: 20px">
                 <a href="javascript:;"  th:text="${session.admin.name}"></a>
                 <dl class="layui-nav-child">
                     <dd><a href="">我的收藏</a></dd>
+                    <dd><a href="/">切换账号</a></dd>
                     <dd><a href="">修改密码</a></dd>
                 </dl>
             </li>
@@ -61,8 +62,165 @@
             </ul>
         </div>
     </div>
-    <div class="layui-body">
-        <h2>添加....</h2>
+    <div class="layui-body" style="padding: 15px 0 0 15px">
+        <blockquote class="layui-elem-quote layui-text">
+            新增人才信息
+        </blockquote>
+        <form class="layui-form" action="/info/doAdd" method="post">
+
+            <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input name="name" class="layui-input" type="text" placeholder="请输入" autocomplete="off" lay-verify="required" lay-reqtext="姓名是必填项，岂能为空？">
+            </div>
+        </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-block">
+                    <input name="age" class="layui-input" type="text" placeholder="请输入" autocomplete="off" lay-verify="required" lay-reqtext="年龄是必填项，岂能为空？">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">手机</label>
+                    <div class="layui-input-inline">
+                        <input name="phone" class="layui-input" type="tel" autocomplete="off" lay-verify="required|phone">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-inline">
+                        <input name="email" class="layui-input" type="text" autocomplete="off" lay-verify="email">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">出生日期</label>
+                    <div class="layui-input-inline">
+                        <input name="birthday" class="layui-input" id="date" type="text" placeholder="yyyy-MM-dd" autocomplete="off" lay-verify="date">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <input name="sex" title="男" type="radio" checked="" value="男">
+                    <input name="sex" title="女" type="radio" value="女">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">职业类型</label>
+                <div class="layui-input-block">
+                    <select name="levelid" lay-filter="levelid" >
+                        <option value="0">请选择</option>
+                        <option  th:each="type:${typeList}" th:value="${type.getId()}" th:text="${type.getName()}"></option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">人才等级</label>
+                <div class="layui-input-block">
+                    <select name="typeid" lay-filter="type" >
+
+                        <option value="0">请选择</option>
+                        <option th:each="level:${levelList}" th:value="${level.getId()}" th:text="${level.getName()}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性格</label>
+                <div class="layui-input-block">
+                    <input name="xingge" class="layui-input" type="text" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">爱好</label>
+                <div class="layui-input-block">
+                    <input name="like" class="layui-input" type="text" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">现任职岗位</label>
+                <div class="layui-input-block">
+                    <input name="renzi" class="layui-input" type="text" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">现薪资待遇</label>
+                <div class="layui-input-block">
+                    <input name="xinzi" class="layui-input" type="text" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">现所属公司</label>
+                <div class="layui-input-block">
+                    <input name="gongsi" class="layui-input" type="text" placeholder="请输入">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">现住址</label>
+                <div class="layui-input-block">
+                    <input name="adress" class="layui-input" type="text" placeholder="请输入">
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">复选框</label>
+                    <div class="layui-input-block">
+                        <input name="isgo" value="1" title="跳槽意向" type="checkbox">
+                        <input name="isrenzhi" value="1" title="是否在职" type="checkbox"  checked="">
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-textarea" placeholder="请输入内容" name="comment"></textarea>
+                </div>
+            </div>
+            <!--<div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">编辑器</label>
+              <div class="layui-input-block">
+                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+              </div>
+            </div>-->
+            <div class="layui-form-item">
+                <div class="layui-inline" style="margin-left: 110px;padding-top: 21px;line-height:0px">
+                    <div class="layui-upload">
+                        <button class="layui-btn" id="test1" type="button"><i class="layui-icon">&#xe67c;</i>上传照片</button>
+                        <div class="layui-upload-list">
+                            <img class="layui-upload-img" style="height: 160px;width: 130px;" id="demo1">
+                            <p id="demoText"></p>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="photo" id="photo">
+                <div class="layui-inline" style="margin-left: 620px;">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" type="submit" lay-filter="demo1" lay-submit="">立即提交</button>
+                        <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
 
     </div>
 
@@ -74,5 +232,78 @@
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <!-- Layui Js -->
 <script type="text/javascript" src="/layui/layui.js"></script>
+<script>
+    layui.use('upload', function() {
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            , url: '/info/upload'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }else{
+                    $("#photo").val(res.data["src"]);
+                }
+                //上传成功
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ]
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+
+
+
+
+    });
+</script>
 </body>
 </html>

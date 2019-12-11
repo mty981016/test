@@ -22,12 +22,11 @@ public class AdminController {
     @RequestMapping("login")
     public String login(Admin admin, HttpSession session, Model model){
         model.addAttribute("msg","");
-
         Admin aa=asi.login(admin);
         if(aa!=null){
             session.setAttribute("admin",aa);
 
-           return "adminBackground";
+           return "main";
         }else{
            model.addAttribute("msg","用户名或密码错误");
            return "index";

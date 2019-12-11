@@ -1,7 +1,7 @@
 package com.bdqn.ls.pojo;
 
-import javax.persistence.*;
 import java.util.Date;
+import javax.persistence.*;
 
 public class Info {
     /**
@@ -44,7 +44,7 @@ public class Info {
     /**
      * 兴趣爱好
      */
-    private String like;
+    private String ilike;
 
     /**
      * 当前待遇水平
@@ -76,59 +76,23 @@ public class Info {
      */
     private Integer isrenzhi;
 
-    public String getPhoto() {
-        return photo;
-    }
+    private String photo;
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
+    private Date createtime;
+
+    private String adress;
+
+    private String phone;
+
+    private String email;
+
+    private Date birthday;
 
     /**
      * 获取主键标识
      *
      * @return id - 主键标识
      */
-    private  String photo;
-
-    public String getAdress() {
-        return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
-
-    private  String adress;
-
-    public Date getCreatetime() {
-        return createtime;
-    }
-
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
-
-    private Date createtime;
-    private String phone;
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    private String email;
     public Integer getId() {
         return id;
     }
@@ -256,16 +220,16 @@ public class Info {
      * @return like - 兴趣爱好
      */
     public String getLike() {
-        return like;
+        return ilike;
     }
 
     /**
      * 设置兴趣爱好
      *
-     * @param like 兴趣爱好
+     * @param ilike 兴趣爱好
      */
-    public void setLike(String like) {
-        this.like = like;
+    public void setLike(String ilike) {
+        this.ilike = ilike;
     }
 
     /**
@@ -374,5 +338,89 @@ public class Info {
      */
     public void setIsrenzhi(Integer isrenzhi) {
         this.isrenzhi = isrenzhi;
+    }
+
+    /**
+     * @return photo
+     */
+    public String getPhoto() {
+        return photo;
+    }
+
+    /**
+     * @param photo
+     */
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    /**
+     * @return createtime
+     */
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    /**
+     * @param createtime
+     */
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    /**
+     * @return adress
+     */
+    public String getAdress() {
+        return adress;
+    }
+
+    /**
+     * @param adress
+     */
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    /**
+     * @return phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * @return email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return birthday
+     */
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * @param birthday
+     */
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }
