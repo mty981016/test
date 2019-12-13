@@ -44,6 +44,11 @@ public class InfoController {
         model.addAttribute("infolist",infoList);
         return "list";
     }
+    @RequestMapping("todetails")
+    public String todetails(int id,Model model){
+        model.addAttribute("info",infoService.findByid(id));
+        return "details";
+    }
     @RequestMapping("toAdd")
     public String toAdd(Model model){       //进入添加信息页面
         model.addAttribute("typeList",typeService.findall());

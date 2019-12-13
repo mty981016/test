@@ -24,10 +24,10 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public Info findOneById(int id) {
-
-        return infoMapper.selectByPrimaryKey(id);
+    public Info findByid(int id) {
+        return infoMapper.findByid(id);
     }
+
 
     @Override
     public List<Info> mainlist1() {

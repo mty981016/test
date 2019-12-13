@@ -8,4 +8,5 @@ import java.util.List;
 public interface InfoMapper extends MyMapper<Info> {
     List<Info> mainlist1();
     List<Info> mainlist2();
+    Info findByid(int id);
 }

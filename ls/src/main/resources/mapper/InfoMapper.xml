@@ -34,4 +34,8 @@
 
   </select>
 
+  <select id="findByid" resultType="com.bdqn.ls.pojo.Info">
+     SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id and i.id=#{id}
+  </select>
+
 </mapper>
