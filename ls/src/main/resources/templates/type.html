@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <title>后台管理</title>
     <link rel="stylesheet" href="/layui/css/layui.css" media="all"/>
-    <style type="text/css">
-        .infolist{list-style: none;float: left;border: #e6e6e6 solid 1.5px;
-            width: 22%;height: 180px;margin-left: 23px;background-color: white;
-        }
-        .ms{margin-top: 15px;}
-        .ms li{line-height: 30px}
-    </style>
+
 </head>
 <body class="layui-layout-body" style="background-color: white">
 <div class="layui-layout layui-layout-admin">
@@ -62,29 +56,8 @@
 
     <div class="layui-body" style="padding: 15px 0 0 15px;">
         <blockquote class="layui-elem-quote layui-text">
-           人才信息列表
+            职业类型管理
         </blockquote>
-        <div id="likeList" style="width:98%;height: 80%;background-color:rgb(242,242,242);" >
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 12px;margin-bottom:5px;border-color: #009E94">
-                <legend>所有信息</legend>
-            </fieldset>
-            <ul>
-                <li class="infolist" th:each="info:${infolist}">
-                    <img th:src="${info.getPhoto()}" alt="图片显示异常" style="margin-right: 10px;float: left;border-right: #e6e6e6 solid 1.5px" width="120" height="180">
-                    <div style="display: inline-block">
-                        <ul class="ms">
-                            <li>姓名：<span th:text="${info.getName()}"></span></li>
-                            <li>年龄：<span th:text="${info.getAge()}"></span></li>
-                            <li>性别：<span th:text="${info.getSex()}"></span></li>
-                            <li>职业：<span th:text="${info.getTypename()}"></span></li>
-                            <li>电话：<span th:text="${info.getPhone()}"></span></li>
-                        </ul>
-
-                    </div>
-                </li>
-            </ul>
-
-        </div>
         <div id="page"></div>
     </div>
 

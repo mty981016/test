@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -39,6 +40,8 @@ public class InfoController {
     }
     @RequestMapping("tolist")
     public String tolist(Model model){      //进入信息列表页面
+        List<Info> infoList=null;
+        model.addAttribute("infolist",infoList);
         return "list";
     }
     @RequestMapping("toAdd")

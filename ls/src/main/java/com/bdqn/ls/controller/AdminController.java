@@ -32,6 +32,9 @@ public class AdminController {
             return "index";
         }
 
-
+    }
+    @RequestMapping("tolikeList")
+    public String tolikeList(){
+        return "ilike";
     }
 }
