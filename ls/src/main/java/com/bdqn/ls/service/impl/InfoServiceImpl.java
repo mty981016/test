@@ -60,4 +60,9 @@ public class InfoServiceImpl implements InfoService {
     public List<Info> getList(int curr, int limit) {
         return infoMapper.getList(curr, limit);
     }
+
+    @Override
+    public List<Info> getMyLikeById(int id) {
+        return infoMapper.getMyLikeById(id);
+    }
 }

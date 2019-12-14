@@ -17,4 +17,6 @@ public interface InfoMapper extends MyMapper<Info> {
     List<Info> getList(int curr, int limit);
 
     Info findByid(int id);
+
+    List<Info> getMyLikeById(int id);
 }

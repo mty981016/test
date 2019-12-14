@@ -54,60 +54,10 @@
 </head>
 <body class="layui-layout-body" style="background-color: white">
 <div class="layui-layout layui-layout-admin">
-    <div class="layui-header" >
-        <div class="layui-logo" style="font-size: 20px;line-height: 80px">人才信息管理</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left" style="line-height: 80px">
-            <li class="layui-nav-item"><a href="" style="font-size: 20px">首页</a></li>
-            <li class="layui-nav-item"><a href=""  style="font-size: 20px">商品管理</a></li>
-            <li class="layui-nav-item"><a href=""  style="font-size: 20px">用户</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"  style="font-size: 20px">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
-        </ul>
-        <ul class="layui-nav layui-layout-right" style="line-height: 80px">
-            <li class="layui-nav-item" style="font-size: 20px">
-                <a href="javascript:;"  th:text="${session.admin.name}"></a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">我的收藏</a></dd>
-                    <dd><a href="/">切换用户</a></dd>
-                    <dd><a href="">修改密码</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item"><a href=""  style="font-size: 20px">退出系统</a></li>
-        </ul>
-    </div>
+    <!-- 抽取公共页面的头部及侧边栏 -->
+    <div th:insert="~{common/head :: head}"></div>
 
-    <div class="layui-side layui-bg-black" >
-        <div class="layui-side-scroll" >
-            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">人才信息列表</a>
-                    <dl class="layui-nav-child"  th:if="${session.admin.levelid==2}">
-                        <dd><a href="javascript:;">一级人才</a></dd>
-                        <dd><a href="javascript:;">二级人才</a></dd>
-                    </dl>
-                    <dl class="layui-nav-child"  th:if="${session.admin.levelid==3}">
-                        <dd><a href="javascript:;">一级人才</a></dd>
-                        <dd><a href="javascript:;">二级人才</a></dd>
-                        <dd><a href="javascript:;">三级人才</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item" th:if="${session.admin.levelid==3}">
-                    <a href="javascript:;">管理员列表</a>
-
-                </li>
-                <li class="layui-nav-item" th:if="${session.admin.levelid==3}"><a href="">职业类型管理</a></li>
-                <li class="layui-nav-item" th:if="${session.admin.levelid==3}"><a href="/info/toAdd" >新增人才信息</a></li>
-            </ul>
-        </div>
-    </div>
+    <div th:insert="~{common/sidebar :: side}"></div>
 
     <div class="layui-body" style="padding: 15px 0 0 15px">
         <blockquote class="layui-elem-quote layui-text">
@@ -200,10 +150,7 @@
         </div>
     </div>
 
-    <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        © 七人行团队
-    </div>
+    <div th:replace="~{common/foot :: foot}"></div>
 </div>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <!-- Layui Js -->

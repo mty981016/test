@@ -24,4 +24,6 @@ public interface InfoService {
 
     List<Info> getList(int curr, int limit);
 
+    List<Info> getMyLikeById(int id);
+
 }

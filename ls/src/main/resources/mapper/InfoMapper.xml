@@ -43,11 +43,15 @@
   </select>
 
     <select id="getList" resultType="com.bdqn.ls.pojo.Info">
-        select * from info order by createtime desc limit #{curr},#{limit}
+        SELECT * FROM info ORDER BY createtime DESC limit #{curr},#{limit}
     </select>
 
-  <select id="findByid" resultType="com.bdqn.ls.pojo.Info">
+    <select id="findByid" resultType="com.bdqn.ls.pojo.Info">
      SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id and i.id=#{id}
   </select>
+
+    <select id="getMyLikeById" resultType="com.bdqn.ls.pojo.Info" parameterType="int">
+        SELECT i.* FROM mylike m,info i WHERE m.infoid=i.id AND m.adminid=#{id} limit 0,8
+    </select>
 
 </mapper>

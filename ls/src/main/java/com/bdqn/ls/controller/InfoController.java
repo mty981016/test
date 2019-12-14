@@ -1,9 +1,11 @@
 package com.bdqn.ls.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bdqn.ls.pojo.Admin;
 import com.bdqn.ls.pojo.Info;
 import com.bdqn.ls.service.InfoService;
 import com.bdqn.ls.service.LevelService;
+import com.bdqn.ls.service.MyLikeService;
 import com.bdqn.ls.service.TypeService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class InfoController {
     private LevelService levelService;
     @Autowired
     private TypeService typeService;
+    @Autowired
+    private MyLikeService myLikeService;
 
     @RequestMapping("tomain")
     public String tomain(Model model) {
@@ -52,8 +56,8 @@ public class InfoController {
     }
 
     @RequestMapping("todetails")
-    public String todetails(int id,Model model){
-        model.addAttribute("info",infoService.findByid(id));
+    public String todetails(int id, Model model) {
+        model.addAttribute("info", infoService.findByid(id));
         return "details";
     }
 
@@ -81,7 +85,7 @@ public class InfoController {
     }
 
     @RequestMapping(value = "/change")
-    public String list1(HttpServletRequest request, HttpSession session, Model model) {
+    public String list1(HttpServletRequest request, Model model) {
         int curr = Integer.parseInt(request.getParameter("curr"));
         int limit = Integer.parseInt(request.getParameter("limit"));
         int count = infoService.getCount();
@@ -119,7 +123,19 @@ public class InfoController {
             res.put("data", resUrl);
             return res;
         }
+    }
 
-
+    @RequestMapping(value = "/change1")
+    public String lchange(HttpServletRequest request, HttpSession session, Model model) {
+        int curr = Integer.parseInt(request.getParameter("curr"));
+        int limit = Integer.parseInt(request.getParameter("limit"));
+        int count = myLikeService.getCount();
+        List<Info> list = myLikeService.getList((curr - 1) * limit, limit);
+        model.addAttribute("count", count);
+        Admin admin = (Admin) session.getAttribute("admin");
+        admin.setLikes(list);
+        model.addAttribute("curr", curr);
+        model.addAttribute("limit", limit);
+        return "ilike";
     }
 }

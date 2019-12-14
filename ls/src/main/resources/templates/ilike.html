@@ -5,73 +5,50 @@
     <title>后台管理</title>
     <link rel="stylesheet" href="/layui/css/layui.css" media="all"/>
     <style type="text/css">
-        .likelist{list-style: none;float: left;border: #e6e6e6 solid 1.5px;
-            width: 22%;height: 180px;margin:10px 0 25px 23px;background-color: white;
+        .likelist {
+            list-style: none;
+            float: left;
+            border: #e6e6e6 solid 1.5px;
+            width: 22%;
+            height: 180px;
+            margin: 10px 0 25px 23px;
+            background-color: white;
         }
-        .ms{margin-top: 15px;}
-        .ms li{line-height: 30px}
+
+        .ms {
+            margin-top: 15px;
+        }
+
+        .ms li {
+            line-height: 30px
+        }
     </style>
 </head>
 <body class="layui-layout-body" style="background-color: white">
+<input type="hidden" th:value="${count}" id="count">
+<input type="hidden" th:value="${curr}" id="curr">
+<input type="hidden" th:value="${limit}" id="limit">
 <div class="layui-layout layui-layout-admin">
-    <div class="layui-header" >
-        <div class="layui-logo" style="font-size: 20px;line-height: 80px">人才信息管理</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left" style="line-height: 80px">
-            <li class="layui-nav-item"><a href="" style="font-size: 20px">首页</a></li>
+    <!-- 抽取公共页面的头部及侧边栏 -->
+    <div th:insert="~{common/head :: head}"></div>
 
-        </ul>
-        <ul class="layui-nav layui-layout-right" style="line-height: 80px">
-            <li class="layui-nav-item" style="font-size: 20px">
-                <a href="javascript:;"  th:text="${session.admin.name}"></a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">我的收藏</a></dd>
-                    <dd><a href="/">切换用户</a></dd>
-                    <dd><a href="">修改密码</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item"><a href=""  style="font-size: 20px">退出系统</a></li>
-        </ul>
-    </div>
-
-    <div class="layui-side layui-bg-black">
-        <div class="layui-side-scroll">
-            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">人才信息列表</a>
-                    <dl class="layui-nav-child"  th:if="${session.admin.levelid==2}">
-                        <dd><a href="javascript:;">一级人才</a></dd>
-                        <dd><a href="javascript:;">二级人才</a></dd>
-                    </dl>
-                    <dl class="layui-nav-child"  th:if="${session.admin.levelid==3}">
-                        <dd><a href="javascript:;">一级人才</a></dd>
-                        <dd><a href="javascript:;">二级人才</a></dd>
-                        <dd><a href="javascript:;">三级人才</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item" th:if="${session.admin.levelid==3}">
-                    <a href="javascript:;">管理员列表</a>
-
-                </li>
-                <li class="layui-nav-item" th:if="${session.admin.levelid==3}"><a href="">职业类型管理</a></li>
-                <li class="layui-nav-item" th:if="${session.admin.levelid==3}"><a href="/info/toAdd" >新增人才信息</a></li>
-            </ul>
-        </div>
-    </div>
+    <div th:insert="~{common/sidebar :: side}"></div>
 
     <div class="layui-body" style="padding: 15px 0 0 15px">
         <blockquote class="layui-elem-quote layui-text">
             我的收藏
         </blockquote>
-        <div id="likeList" style="width:98%;height: 81%;background-color:rgb(242,242,242);" >
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 12px;margin-bottom:5px;border-color: #009E94">
+        <div id="likeList" style="width:98%;height: 81%;background-color:rgb(242,242,242);">
+            <fieldset class="layui-elem-field layui-field-title"
+                      style="margin-top: 12px;margin-bottom:5px;border-color: #009E94">
                 <legend>我的收藏</legend>
             </fieldset>
             <ul>
                 <li class="likelist" th:each="info:${session.admin.getLikes()}" onclick="todetails()">
                     <input class="infoid" type="hidden" th:value="${info.getId()}">
-                    <img th:src="${info.getPhoto()}" alt="图片显示异常" style="margin-right: 10px;float: left;border-right: #e6e6e6 solid 1.5px" width="120" height="180">
+                    <img th:src="${info.getPhoto()}" alt="图片显示异常"
+                         style="margin-right: 10px;float: left;border-right: #e6e6e6 solid 1.5px" width="120"
+                         height="180">
                     <div style="display: inline-block">
                         <ul class="ms">
                             <li>姓名：<span th:text="${info.getName()}"></span></li>
@@ -89,32 +66,48 @@
         <div id="page"></div>
     </div>
 
-    <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        © 七人行团队
-    </div>
+    <div th:replace="~{common/foot :: foot}"></div>
 </div>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <!-- Layui Js -->
 <script type="text/javascript" src="/layui/layui.js"></script>
 <script>
     //JavaScript代码区域
-    function todetails(){
-        var id=$(".infoid").val();
-        alert("555"+id);
-        location.href="/info/todetails?id="+id;
+    function todetails() {
+        var id = $(".infoid").val();
+        alert("555" + id);
+        location.href = "/info/todetails?id=" + id;
     }
-    layui.use('element', function(){
+
+    layui.use('element', function () {
         var element = layui.element;
 
     });
-    layui.use(['laypage', 'layer'], function() {
+    var count = document.getElementById("count").value;
+    var curr = document.getElementById("curr").value;
+    var limit = document.getElementById("limit").value;
+    if (limit == null) {
+        limit = 8;
+    }
+    layui.use(['laypage', 'layer'], function () {
         var laypage = layui.laypage
             , layer = layui.layer;
         laypage.render({
             elem: 'page'
-            ,count: 300
-            ,layout: ['limit', 'prev', 'page', 'next']
+            , count: parseInt(count)
+            , curr: parseInt(curr)
+            , limit: parseInt(limit)
+            , layout: ['prev', 'page', 'next']
+            , jump(obj, first) {
+                if (!first) {
+                    //清空以前加载的数据
+                    // $('tbody').empty();
+                    //调用加载函数加载数据
+                    location.href = "/info/change1?curr=" + obj.curr + "&limit=" + obj.limit;
+                } else {
+                    layer.msg("当前页数:" + obj.curr);
+                }
+            }
         });
     })
 </script>

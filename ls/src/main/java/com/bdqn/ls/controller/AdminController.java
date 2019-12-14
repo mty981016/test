@@ -1,6 +1,9 @@
 package com.bdqn.ls.controller;
 
 import com.bdqn.ls.pojo.Admin;
+import com.bdqn.ls.pojo.Info;
+import com.bdqn.ls.service.InfoService;
+import com.bdqn.ls.service.MyLikeService;
 import com.bdqn.ls.service.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,12 +11,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
     @Autowired
     private AdminServiceImpl asi;
+    @Autowired
+    private InfoService infoService;
+    @Autowired
+    private MyLikeService myLikeService;
 
     @RequestMapping("/")
     public String toLogin() {
@@ -33,8 +41,17 @@ public class AdminController {
         }
 
     }
+
     @RequestMapping("tolikeList")
-    public String tolikeList(){
+    public String tolikeList(Model model, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        List<Info> list = infoService.getMyLikeById(admin.getId());
+        admin.setLikes(list);
+        session.setAttribute("admin", admin);
+        int count = myLikeService.getCount();
+        model.addAttribute("count", count);
+        model.addAttribute("limit", 8);
+        model.addAttribute("curr", 1);
         return "ilike";
     }
 }
