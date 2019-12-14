@@ -16,6 +16,16 @@ public class Admin {
 
     private Integer levelid;
 
+    public List<Searchlisi> getSearchlisiList() {
+        return searchlisiList;
+    }
+
+    public void setSearchlisiList(List<Searchlisi> searchlisiList) {
+        this.searchlisiList = searchlisiList;
+    }
+
+    private List<Searchlisi> searchlisiList;
+
     public List<Info> getLikes() {
         return likes;
     }

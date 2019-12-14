@@ -35,8 +35,49 @@
 </head>
 <body class="layui-layout-body" style="background-color: white">
 <div class="layui-layout layui-layout-admin">
+<<<<<<< HEAD
     <!-- 抽取公共页面的头部及侧边栏 -->
     <div th:insert="~{common/head :: head}"></div>
+=======
+    <div class="layui-header" >
+        <div class="layui-logo" style="font-size: 20px;line-height: 80px">人才信息管理</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left" style="line-height: 80px">
+            <li class="layui-nav-item"><a href="/info/tomain" style="font-size: 20px">首页</a></li>
+
+        </ul>
+        <ul class="layui-nav layui-layout-right" style="line-height: 80px">
+            <li class="layui-nav-item" style="font-size: 20px">
+                <a href="javascript:;"  th:text="${session.admin.name}"></a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/admin/tolikeList">我的收藏</a></dd>
+                    <dd><a href="/">切换用户</a></dd>
+                    <dd><a href="">修改密码</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href=""  style="font-size: 20px">退出系统</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="/info/tolist">人才信息列表</a>
+                    <dl class="layui-nav-child"  th:if="${session.admin.levelid==2}">
+                        <dd><a href="javascript:;">一级人才</a></dd>
+                        <dd><a href="javascript:;">二级人才</a></dd>
+                    </dl>
+                    <dl class="layui-nav-child"  th:if="${session.admin.levelid==3}">
+                        <dd><a href="javascript:;">一级人才</a></dd>
+                        <dd><a href="javascript:;">二级人才</a></dd>
+                        <dd><a href="javascript:;">三级人才</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item" th:if="${session.admin.levelid==3}">
+                    <a href="javascript:;">管理员列表</a>
+>>>>>>> d4412daf9eeb4d752d2e9f4949065bb71793447c
 
     <div th:insert="~{common/sidebar :: side}"></div>
 
