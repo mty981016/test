@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/layui/css/layui.css" media="all"/>
     <style type="text/css">
         .likelist{list-style: none;float: left;border: #e6e6e6 solid 1.5px;
-            width: 22%;height: 180px;margin-left: 23px;background-color: white;
+            width: 22%;height: 180px;margin:10px 0 25px 23px;background-color: white;
         }
         .ms{margin-top: 15px;}
         .ms li{line-height: 30px}
@@ -64,12 +64,13 @@
         <blockquote class="layui-elem-quote layui-text">
             我的收藏
         </blockquote>
-        <div id="likeList" style="width:98%;height: 80%;background-color:rgb(242,242,242);" >
+        <div id="likeList" style="width:98%;height: 81%;background-color:rgb(242,242,242);" >
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 12px;margin-bottom:5px;border-color: #009E94">
                 <legend>我的收藏</legend>
             </fieldset>
             <ul>
-                <li class="likelist" th:each="info:${session.admin.getLikes()}">
+                <li class="likelist" th:each="info:${session.admin.getLikes()}" onclick="todetails()">
+                    <input class="infoid" type="hidden" th:value="${info.getId()}">
                     <img th:src="${info.getPhoto()}" alt="图片显示异常" style="margin-right: 10px;float: left;border-right: #e6e6e6 solid 1.5px" width="120" height="180">
                     <div style="display: inline-block">
                         <ul class="ms">
@@ -98,6 +99,11 @@
 <script type="text/javascript" src="/layui/layui.js"></script>
 <script>
     //JavaScript代码区域
+    function todetails(){
+        var id=$(".infoid").val();
+        alert("555"+id);
+        location.href="/info/todetails?id="+id;
+    }
     layui.use('element', function(){
         var element = layui.element;
 

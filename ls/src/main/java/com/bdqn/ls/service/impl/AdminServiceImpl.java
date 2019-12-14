@@ -23,27 +23,25 @@ public class AdminServiceImpl implements AdminService {
     private MylikeMapper likeMapper;
     @Autowired
     private InfoMapper infoMapper;
+
     @Override
-    public Admin login(Admin a)
-    {
-        Admin aa=adminMapper.selectOne(a);
+    public Admin login(Admin a) {
+        Admin aa = adminMapper.selectOne(a);
 //        Example example = new Example(Mylike.class);
 //        Example.Criteria criteria = example.createCriteria();
-//        criteria.andEqualTo("adminid",aa.getId());
-//        List<Mylike> likeList=likeMapper.selectByExample(example);
-//        List<Info> likeInfo=new ArrayList<Info>();
-//        Example example1 = new Example(Info.class);
-//        Example.Criteria criteria1 = example.createCriteria();
+//        criteria.andEqualTo("adminid", aa.getId());
+//        List<Mylike> likeList = likeMapper.selectByExample(example);
+//        List<Info> likeInfo = new ArrayList<Info>();
 //
-//        for (Mylike like:likeList
-//             ) {
-//            criteria.andEqualTo("id",like.getInfoid());
-//            likeInfo.add(infoMapper.selectOneByExample(example1));
+//        for (Mylike like : likeList
+//        ) {
+//
+//            likeInfo.add(infoMapper.findByid(like.getInfoid()));
 //
 //        }
 //
 //        aa.setLikes(likeInfo);
-      return aa;
+        return aa;
     }
 
     @Override
@@ -53,7 +51,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean addAdmin(Admin a) {
-        if(adminMapper.insert(a)>0){
+        if (adminMapper.insert(a) > 0) {
             return true;
         }
         return false;
@@ -61,7 +59,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean updAdmin(Admin a) {
-        if(adminMapper.updateByPrimaryKey(a)>0){
+        if (adminMapper.updateByPrimaryKey(a) > 0) {
             return true;
         }
         return false;
@@ -69,7 +67,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean delAdmin(Admin a) {
-        if(adminMapper.updateByPrimaryKey(a)>0){
+        if (adminMapper.updateByPrimaryKey(a) > 0) {
             return true;
         }
         return false;

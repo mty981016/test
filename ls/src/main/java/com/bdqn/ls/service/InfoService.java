@@ -12,6 +12,8 @@ public interface InfoService {
 
     Info findOneById(int id);
 
+    Info findByid(int id);
+
     List<Info> mainlist1();
 
     List<Info> mainlist2();

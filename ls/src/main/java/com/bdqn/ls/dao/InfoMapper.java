@@ -15,4 +15,6 @@ public interface InfoMapper extends MyMapper<Info> {
     int getCount();
 
     List<Info> getList(int curr, int limit);
+
+    Info findByid(int id);
 }
