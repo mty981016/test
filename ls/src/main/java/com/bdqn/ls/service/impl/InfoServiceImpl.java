@@ -11,17 +11,17 @@ import java.util.Map;
 
 @Service
 public class InfoServiceImpl implements InfoService {
-    @Override
-    public Info findOneById(int id) {
-        return null;
-    }
 
     @Autowired
     private InfoMapper infoMapper;
 
     @Override
-    public List<Info> findInfo(int pageNo, int pageSize, Map<String, String> maps) {
+    public Info findOneById(int id) {
+        return null;
+    }
 
+    @Override
+    public List<Info> findInfo(int pageNo, int pageSize, Map<String, String> maps) {
         return null;
     }
 
@@ -47,13 +47,13 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public List<Info> getAllInfo() {
-        return infoMapper.getAllInfo();
+    public List<Info> getAllInfo(int isInit) {
+        return infoMapper.getAllInfo(isInit);
     }
 
     @Override
     public int getCount() {
-        return infoMapper.getCount();
+        return infoMapper.selectCount(new Info());
     }
 
     @Override
@@ -64,5 +64,15 @@ public class InfoServiceImpl implements InfoService {
     @Override
     public List<Info> getMyLikeById(int id) {
         return infoMapper.getMyLikeById(id);
+    }
+
+    @Override
+    public List<Info> getInfoByLevel(int level, int curr, int limit) {
+        return infoMapper.getInfoByLevel(level, curr, limit);
+    }
+
+    @Override
+    public int getCountByLevel(int level) {
+        return infoMapper.getCountByLevel(level);
     }
 }

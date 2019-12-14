@@ -19,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -39,7 +41,6 @@ public class InfoController {
 
     @RequestMapping("tomain")
     public String tomain(Model model) {
-
         model.addAttribute("mainlist1", infoService.mainlist1());
         model.addAttribute("mainlist2", infoService.mainlist2());
         return "main";
@@ -47,7 +48,7 @@ public class InfoController {
 
     @RequestMapping("tolist")
     public String tolist(Model model) {      //进入信息列表页面
-        List<Info> infoList = infoService.getAllInfo();
+        List<Info> infoList = infoService.getAllInfo(1);
         int count = infoService.getCount();
         model.addAttribute("count", count);
         model.addAttribute("limit", 8);
@@ -84,7 +85,7 @@ public class InfoController {
 
     }
 
-    @RequestMapping(value = "/change")
+    @RequestMapping(value = "change")
     public String list1(HttpServletRequest request, Model model) {
         int curr = Integer.parseInt(request.getParameter("curr"));
         int limit = Integer.parseInt(request.getParameter("limit"));
@@ -94,6 +95,7 @@ public class InfoController {
         model.addAttribute("infolist", list);
         model.addAttribute("curr", curr);
         model.addAttribute("limit", limit);
+        model.addAttribute("level", 0);
         return "list";
     }
 
@@ -125,7 +127,7 @@ public class InfoController {
         }
     }
 
-    @RequestMapping(value = "/change1")
+    @RequestMapping(value = "change1")
     public String lchange(HttpServletRequest request, HttpSession session, Model model) {
         int curr = Integer.parseInt(request.getParameter("curr"));
         int limit = Integer.parseInt(request.getParameter("limit"));
@@ -137,5 +139,44 @@ public class InfoController {
         model.addAttribute("curr", curr);
         model.addAttribute("limit", limit);
         return "ilike";
+    }
+
+    @RequestMapping(value = "getListByLevel1")
+    public String getListByLevel1(@PathParam("level") int level, @PathParam("curr") int curr,
+                                 @PathParam("limit") int limit, Model model,
+                                 HttpServletRequest request) {
+        List<Info> list = infoService.getInfoByLevel(level, (curr - 1) * limit, limit);
+        model.addAttribute("infolist", list);
+        model.addAttribute("count", infoService.getCountByLevel(level));
+        model.addAttribute("curr", curr);
+        model.addAttribute("limit", limit);
+        model.addAttribute("level", 1);
+        return "list";
+    }
+
+    @RequestMapping(value = "getListByLevel2")
+    public String getListByLevel2(@PathParam("level") int level, @PathParam("curr") int curr,
+                                 @PathParam("limit") int limit, Model model,
+                                 HttpServletRequest request) {
+        List<Info> list = infoService.getInfoByLevel(level, (curr - 1) * limit, limit);
+        model.addAttribute("infolist", list);
+        model.addAttribute("count", infoService.getCountByLevel(level));
+        model.addAttribute("curr", curr);
+        model.addAttribute("limit", limit);
+        model.addAttribute("level", 2);
+        return "list";
+    }
+
+    @RequestMapping(value = "getListByLevel3")
+    public String getListByLevel3(@PathParam("level") int level, @PathParam("curr") int curr,
+                                  @PathParam("limit") int limit, Model model,
+                                  HttpServletRequest request) {
+        List<Info> list = infoService.getInfoByLevel(level, (curr - 1) * limit, limit);
+        model.addAttribute("infolist", list);
+        model.addAttribute("count", infoService.getCountByLevel(level));
+        model.addAttribute("curr", curr);
+        model.addAttribute("limit", limit);
+        model.addAttribute("level", 3);
+        return "list";
     }
 }

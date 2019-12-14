@@ -54,4 +54,10 @@ public class AdminController {
         model.addAttribute("curr", 1);
         return "ilike";
     }
+
+    @RequestMapping(value = "logout")
+    public String loginOut(HttpSession session, Model model) {
+        session.removeAttribute("admin");
+        return "index";
+    }
 }

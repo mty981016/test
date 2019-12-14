@@ -18,12 +18,16 @@ public interface InfoService {
 
     List<Info> mainlist2();
 
-    List<Info> getAllInfo();
+    List<Info> getAllInfo(int isInit);
 
     int getCount();
 
     List<Info> getList(int curr, int limit);
 
+    List<Info> getInfoByLevel(int level, int curr, int limit);
+
     List<Info> getMyLikeById(int id);
+
+    int getCountByLevel(int level);
 
 }
