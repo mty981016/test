@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+
 @Service
 public class InfoServiceImpl implements InfoService {
     @Autowired
     private InfoMapper infoMapper;
+
     @Override
     public List<Info> findInfo(int pageNo, int pageSize, Map<String, String> maps) {
 
@@ -37,5 +39,20 @@ public class InfoServiceImpl implements InfoService {
     @Override
     public List<Info> mainlist2() {
         return infoMapper.mainlist2();
+    }
+
+    @Override
+    public List<Info> getAllInfo() {
+        return infoMapper.getAllInfo();
+    }
+
+    @Override
+    public int getCount() {
+        return infoMapper.getCount();
+    }
+
+    @Override
+    public List<Info> getList(int curr, int limit) {
+        return infoMapper.getList(curr, limit);
     }
 }

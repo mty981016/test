@@ -6,10 +6,20 @@ import java.util.List;
 import java.util.Map;
 
 public interface InfoService {
-    List<Info> findInfo(int pageNo, int pageSize, Map<String,String> maps);
+    List<Info> findInfo(int pageNo, int pageSize, Map<String, String> maps);
+
     int addInfo(Info info);
+
     Info findOneById(int id);
+
     List<Info> mainlist1();
+
     List<Info> mainlist2();
+
+    List<Info> getAllInfo();
+
+    int getCount();
+
+    List<Info> getList(int curr, int limit);
 
 }

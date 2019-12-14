@@ -27,22 +27,22 @@ public class AdminServiceImpl implements AdminService {
     public Admin login(Admin a)
     {
         Admin aa=adminMapper.selectOne(a);
-        Example example = new Example(Mylike.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("adminid",aa.getId());
-        List<Mylike> likeList=likeMapper.selectByExample(example);
-        List<Info> likeInfo=new ArrayList<Info>();
-        Example example1 = new Example(Info.class);
-        Example.Criteria criteria1 = example.createCriteria();
-
-        for (Mylike like:likeList
-             ) {
-            criteria.andEqualTo("id",like.getInfoid());
-            likeInfo.add(infoMapper.selectOneByExample(example1));
-
-        }
-
-        aa.setLikes(likeInfo);
+//        Example example = new Example(Mylike.class);
+//        Example.Criteria criteria = example.createCriteria();
+//        criteria.andEqualTo("adminid",aa.getId());
+//        List<Mylike> likeList=likeMapper.selectByExample(example);
+//        List<Info> likeInfo=new ArrayList<Info>();
+//        Example example1 = new Example(Info.class);
+//        Example.Criteria criteria1 = example.createCriteria();
+//
+//        for (Mylike like:likeList
+//             ) {
+//            criteria.andEqualTo("id",like.getInfoid());
+//            likeInfo.add(infoMapper.selectOneByExample(example1));
+//
+//        }
+//
+//        aa.setLikes(likeInfo);
       return aa;
     }
 
