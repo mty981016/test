@@ -50,7 +50,7 @@ public class AdminController {
         session.setAttribute("admin", admin);
         int count = myLikeService.getCount();
         model.addAttribute("count", count);
-        model.addAttribute("limit", 8);
+        model.addAttribute("limit", 12);
         model.addAttribute("curr", 1);
         return "ilike";
     }

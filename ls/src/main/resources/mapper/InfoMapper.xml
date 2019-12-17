@@ -35,7 +35,7 @@
   </select>
 
     <select id="getAllInfo" resultType="com.bdqn.ls.pojo.Info">
-    SELECT * FROM info order by createtime desc limit 0,8
+    SELECT * FROM info order by createtime desc limit 0,12
   </select>
 
     <select id="getCount" resultType="int">

@@ -48,10 +48,28 @@
             background-color: rgba(255,255,255,0.8);
         }
         .searchtisi{
+            text-align: left;
             width: 199.5px;
             height: 300px;
             float: left;
         }
+        li{
+            list-style: none;
+        }
+        .searchlist3 li{
+            float: left;
+            margin-left: 12px;
+        }
+        .searchlist2{
+            margin: 10px 0 8px 10px;
+            display: block;
+        }
+        .searchlist2 h3{
+            font-size: 18px;
+            font-weight: bold;
+            color: #009E94;
+        }
+
     </style>
 </head>
 <body class="layui-layout-body" style="background-color: white">
@@ -78,19 +96,56 @@
                 <div class="searchtisi" style="border-right: red solid 1px">
                     <fieldset class="layui-elem-field layui-field-title"
                               style="border-color: #009E94;">
-                        <legend style="font-size: 14px">猜你想搜</legend>
+                        <legend style="font-size: 16px">猜你想搜</legend>
+                        <ul class="searchlist1">
+                            <li class="searchlist2">
+                                <h3>职业</h3>
+                                <ul class="searchlist3">
+                                    <li th:each="type:${typelist}"  th:value="${type.getId()}">
+                                        <a href="" th:text="${type.getName()}"></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br>
+                            <br>
+                            <li class="searchlist2">
+                                <h3>学历</h3>
+                                <ul class="searchlist3">
+                                    <li><a href="">大专</a></li>
+                                    <li><a href="">本科</a></li>
+                                    <li><a href="">研究生</a></li>
+                                    <li><a href="">硕士</a></li>
+                                </ul>
+                            </li>
+                            <br>
+                            <br>
+                            <li class="searchlist2">
+                                <h3>近况</h3>
+                                <ul class="searchlist3">
+                                    <li><a href="">在职有跳槽倾向</a></li>
+                                    <li><a href="">不在职</a></li>
+                                    <li><a href="">在职无跳槽倾向</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
                     </fieldset>
                 </div>
                 <div class="searchtisi">
                     <fieldset class="layui-elem-field layui-field-title"
                               style="border-color: #009E94">
-                        <legend style="font-size: 14px">搜索历史</legend>
+                        <legend style="font-size: 16px">搜索历史</legend>
+                        <ul class="searchlist1">
+                            <li class="searchlist2" th:each="searchlisi:${session.admin.getSearchlisiList()}">
+                                <a href="" th:value="${searchlisi.getId()}" th:text="${searchlisi.getSearchname()}"></a>
+                            </li>
+                        </ul>
                     </fieldset>
                 </div>
             </div>
         </div>
 
-        <div id="likeList" style="width:98%;height: 80%;background-color:rgb(242,242,242);">
+        <div id="likeList" style="width:98%;height: 85%;background-color:rgb(242,242,242);">
             <fieldset class="layui-elem-field layui-field-title"
                       style="margin-top: 12px;margin-bottom:5px;border-color: #009E94">
                 <legend>所有信息</legend>
@@ -147,7 +202,7 @@
     var curr = document.getElementById("curr").value;
     var limit = document.getElementById("limit").value;
     if (limit == null) {
-        limit = 8;
+        limit = 12;
     } else if (limit == "32" || limit == 32) {
         alert("提示一下，32条数据展示测试发现第二页下面会出现分页面板位移情况");
     }
@@ -159,7 +214,7 @@
             elem: 'page'
             , count: parseInt(count)
             , curr: parseInt(curr)
-            , limits: [8, 16]
+            , limits: [12]
             , limit: parseInt(limit)
             , layout: ['limit', 'prev', 'page', 'next']
             , jump(obj, first) {
