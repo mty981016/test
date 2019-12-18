@@ -26,8 +26,10 @@ public interface InfoService {
 
     List<Info> getInfoByLevel(int level, int curr, int limit);
 
-    List<Info> getMyLikeById(int id);
+    List<Info> getMyLikeById(int id,int curr, int limit);
 
     int getCountByLevel(int level);
+
+    int getCountBylikelist(int id);
 
 }

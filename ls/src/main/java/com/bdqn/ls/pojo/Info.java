@@ -74,15 +74,15 @@ public class Info {
 
     private Date birthday;
 
-    public String getTypename() {
-        return typename;
+    private Type type;
+
+    public Type getType() {
+        return type;
     }
 
-    public void setTypename(String typename) {
-        this.typename = typename;
+    public void setType(Type type) {
+        this.type = type;
     }
-
-    private String typename;
 
     private List<Worklisi> worklisiList;
 
@@ -103,6 +103,7 @@ public class Info {
     }
 
     private Teachback teachback;
+
     /**
      * 获取主键标识
      *

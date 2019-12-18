@@ -59,7 +59,7 @@
                             <li>姓名：<span th:text="${info.getName()}"></span></li>
                             <li>年龄：<span th:text="${info.getAge()}"></span></li>
                             <li>性别：<span th:text="${info.getSex()}"></span></li>
-                            <li>职业：<span th:text="${info.getTypename()}"></span></li>
+                            <li>职业：<span th:text="${info.getType().getName()}"></span></li>
                             <li>电话：<span th:text="${info.getPhone()}"></span></li>
                         </ul>
 
@@ -83,7 +83,7 @@
                             <li>姓名：<span th:text="${info.getName()}"></span></li>
                             <li>年龄：<span th:text="${info.getAge()}"></span></li>
                             <li>性别：<span th:text="${info.getSex()}"></span></li>
-                            <li>职业：<span th:text="${info.getTypename()}"></span></li>
+                            <li>职业：<span th:text="${info.getType().getName()}"></span></li>
                             <li>电话：<span th:text="${info.getPhone()}"></span></li>
                         </ul>
                     </div>

@@ -22,46 +22,46 @@
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="birthday" jdbcType="DATE" property="birthday"/>
+        <association property="type" javaType="com.bdqn.ls.pojo.Type">
+            <id column="typeid" property="id"/>
+            <result column="typename" property="name"/>
+        </association>
     </resultMap>
 
-    <select id="mainlist1" resultType="com.bdqn.ls.pojo.Info">
+    <select id="mainlist1" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap">
     SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id AND i.isgo=1 ORDER BY i.createtime DESC LIMIT 4
   </select>
 
-    <select id="mainlist2" resultType="com.bdqn.ls.pojo.Info">
+    <select id="mainlist2" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap">
     SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id AND i.isrenzhi=0 ORDER BY i.createtime DESC LIMIT 4
   </select>
 
-    <select id="getAllInfo" resultType="com.bdqn.ls.pojo.Info">
-<<<<<<< HEAD
-        SELECT * FROM info order by createtime desc
+    <select id="getAllInfo" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap">
+        SELECT i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id order by createtime desc
         <if test="isInit==1">
             LIMIT 0,8
         </if>
     </select>
-=======
-    SELECT * FROM info order by createtime desc limit 0,12
-  </select>
 
     <select id="getCount" resultType="int">
     SELECT COUNT(1) FROM info
   </select>
->>>>>>> fbfc7d7b6f33ea6f07dc709e75715e4e3ae936bd
 
-    <select id="getList" resultType="com.bdqn.ls.pojo.Info">
-        SELECT * FROM info ORDER BY createtime DESC limit #{curr},#{limit}
+    <select id="getList" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap">
+        SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id ORDER BY i.createtime DESC limit #{curr},#{limit}
     </select>
 
-    <select id="findByid" resultType="com.bdqn.ls.pojo.Info">
+    <select id="findByid" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap">
      SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id and i.id=#{id}
   </select>
 
-    <select id="getMyLikeById" resultType="com.bdqn.ls.pojo.Info" parameterType="int">
-        SELECT i.* FROM mylike m,info i WHERE m.infoid=i.id AND m.adminid=#{id} limit 0,8
+    <select id="getMyLikeById" resultType="com.bdqn.ls.pojo.Info" parameterType="int" resultMap="BaseResultMap">
+        SELECT i.*,t.name typename  FROM mylike m,info i,type t WHERE m.infoid=i.id AND i.typeid=t.id and  m.adminid=#{id}  limit #{curr},#{limit}
     </select>
 
-    <select id="getInfoByLevel" resultType="com.bdqn.ls.pojo.Info">
-        SELECT * FROM info WHERE levelid=#{level} ORDER BY createtime
+
+    <select id="getInfoByLevel" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap">
+        SELECT i.*,t.name typename FROM info i,TYPE t WHERE levelid=#{level} and i.typeid=t.id ORDER BY createtime
         <if test="curr==null and limit==null">
             limit 0,8
         </if>
@@ -73,5 +73,9 @@
     <select id="getCountByLevel" resultType="int">
         SELECT COUNT(1) FROM info WHERE levelid=#{level}
     </select>
+    <select id="getCountBylikelist" resultType="int">
+        SELECT COUNT(1) FROM mylike WHERE adminid=#{id}
+    </select>
+
 
 </mapper>

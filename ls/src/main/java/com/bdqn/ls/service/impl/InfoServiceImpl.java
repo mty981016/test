@@ -62,8 +62,8 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public List<Info> getMyLikeById(int id) {
-        return infoMapper.getMyLikeById(id);
+    public List<Info> getMyLikeById(int id,int curr, int limit) {
+        return infoMapper.getMyLikeById(id,curr,limit);
     }
 
     @Override
@@ -74,5 +74,10 @@ public class InfoServiceImpl implements InfoService {
     @Override
     public int getCountByLevel(int level) {
         return infoMapper.getCountByLevel(level);
+    }
+
+    @Override
+    public int getCountBylikelist(int id) {
+        return infoMapper.getCountBylikelist(id);
     }
 }

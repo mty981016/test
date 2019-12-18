@@ -48,17 +48,13 @@ public class InfoController {
 
     @RequestMapping("tolist")
     public String tolist(Model model) {      //进入信息列表页面
-<<<<<<< HEAD
         List<Info> infoList = infoService.getAllInfo(1);
-=======
-        model.addAttribute("typelist",typeService.findall());
-
-        List<Info> infoList = infoService.getAllInfo();
->>>>>>> fbfc7d7b6f33ea6f07dc709e75715e4e3ae936bd
+        model.addAttribute("typelist", typeService.findall());
         int count = infoService.getCount();
         model.addAttribute("count", count);
-        model.addAttribute("limit", 12);
+        model.addAttribute("limit", 8);
         model.addAttribute("infolist", infoList);
+        model.addAttribute("level", 0);
         return "list";
     }
 
@@ -93,7 +89,7 @@ public class InfoController {
 
     @RequestMapping(value = "change")
     public String list1(HttpServletRequest request, Model model) {
-        model.addAttribute("typelist",typeService.findall());
+        model.addAttribute("typelist", typeService.findall());
         int curr = Integer.parseInt(request.getParameter("curr"));
         int limit = Integer.parseInt(request.getParameter("limit"));
         int count = infoService.getCount();
@@ -136,14 +132,15 @@ public class InfoController {
 
     @RequestMapping(value = "change1")
     public String lchange(HttpServletRequest request, HttpSession session, Model model) {
-        model.addAttribute("typelist",typeService.findall());
+        model.addAttribute("typelist", typeService.findall());
+        Admin admin = (Admin) session.getAttribute("admin");
+
         int curr = Integer.parseInt(request.getParameter("curr"));
         int limit = Integer.parseInt(request.getParameter("limit"));
-        int count = myLikeService.getCount();
-        List<Info> list = myLikeService.getList((curr - 1) * limit, limit);
+        int count = infoService.getCountBylikelist(admin.getId());
+        admin.setLikes(infoService.getMyLikeById(admin.getId(),(curr - 1) * limit, limit));
+        System.out.println(curr+"--"+limit+"--"+count);
         model.addAttribute("count", count);
-        Admin admin = (Admin) session.getAttribute("admin");
-        admin.setLikes(list);
         model.addAttribute("curr", curr);
         model.addAttribute("limit", limit);
         return "ilike";
@@ -151,8 +148,8 @@ public class InfoController {
 
     @RequestMapping(value = "getListByLevel1")
     public String getListByLevel1(@PathParam("level") int level, @PathParam("curr") int curr,
-                                 @PathParam("limit") int limit, Model model,
-                                 HttpServletRequest request) {
+                                  @PathParam("limit") int limit, Model model,
+                                  HttpServletRequest request) {
         List<Info> list = infoService.getInfoByLevel(level, (curr - 1) * limit, limit);
         model.addAttribute("infolist", list);
         model.addAttribute("count", infoService.getCountByLevel(level));
@@ -164,8 +161,8 @@ public class InfoController {
 
     @RequestMapping(value = "getListByLevel2")
     public String getListByLevel2(@PathParam("level") int level, @PathParam("curr") int curr,
-                                 @PathParam("limit") int limit, Model model,
-                                 HttpServletRequest request) {
+                                  @PathParam("limit") int limit, Model model,
+                                  HttpServletRequest request) {
         List<Info> list = infoService.getInfoByLevel(level, (curr - 1) * limit, limit);
         model.addAttribute("infolist", list);
         model.addAttribute("count", infoService.getCountByLevel(level));

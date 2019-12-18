@@ -45,12 +45,13 @@ public class AdminController {
     @RequestMapping("tolikeList")
     public String tolikeList(Model model, HttpSession session) {
         Admin admin = (Admin) session.getAttribute("admin");
-        List<Info> list = infoService.getMyLikeById(admin.getId());
-        admin.setLikes(list);
-        session.setAttribute("admin", admin);
-        int count = myLikeService.getCount();
+        List<Info> list = admin.getLikes();
+
+        int count = infoService.getCountBylikelist(admin.getId());
+        admin.setLikes(infoService.getMyLikeById(admin.getId(),0,8));
+
         model.addAttribute("count", count);
-        model.addAttribute("limit", 12);
+        model.addAttribute("limit", 8);
         model.addAttribute("curr", 1);
         return "ilike";
     }

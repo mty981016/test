@@ -52,29 +52,29 @@
             right: 140px;
             background-color: rgba(255, 255, 255, 0.8);
         }
-<<<<<<< HEAD
 
         .searchtisi {
-=======
-        .searchtisi{
             text-align: left;
->>>>>>> fbfc7d7b6f33ea6f07dc709e75715e4e3ae936bd
             width: 199.5px;
             height: 300px;
             float: left;
         }
-        li{
+
+        li {
             list-style: none;
         }
-        .searchlist3 li{
+
+        .searchlist3 li {
             float: left;
             margin-left: 12px;
         }
-        .searchlist2{
+
+        .searchlist2 {
             margin: 10px 0 8px 10px;
             display: block;
         }
-        .searchlist2 h3{
+
+        .searchlist2 h3 {
             font-size: 18px;
             font-weight: bold;
             color: #009E94;
@@ -113,7 +113,7 @@
                             <li class="searchlist2">
                                 <h3>职业</h3>
                                 <ul class="searchlist3">
-                                    <li th:each="type:${typelist}"  th:value="${type.getId()}">
+                                    <li th:each="type:${typelist}" th:value="${type.getId()}">
                                         <a href="" th:text="${type.getName()}"></a>
                                     </li>
                                 </ul>
@@ -172,7 +172,7 @@
                             <li>姓名：<span th:text="${info.getName()}"></span></li>
                             <li>年龄：<span th:text="${info.getAge()}"></span></li>
                             <li>性别：<span th:text="${info.getSex()}"></span></li>
-                            <li>职业：<span th:text="${info.getTypename()}"></span></li>
+                            <li>职业：<span th:text="${info.getType().getName()}"></span></li>
                             <li>电话：<span th:text="${info.getPhone()}"></span></li>
                         </ul>
                     </div>
@@ -215,7 +215,7 @@
     var limit = document.getElementById("limit").value;
     var level = document.getElementById("level").value;
     if (limit == null) {
-        limit = 12;
+        limit = 8;
     } else if (limit == "32" || limit == 32) {
         alert("提示一下，32条数据展示测试发现第二页下面会出现分页面板位移情况");
     }
@@ -227,11 +227,7 @@
             elem: 'page'
             , count: parseInt(count)
             , curr: parseInt(curr)
-<<<<<<< HEAD
             , limits: [8]
-=======
-            , limits: [12]
->>>>>>> fbfc7d7b6f33ea6f07dc709e75715e4e3ae936bd
             , limit: parseInt(limit)
             , layout: ['prev', 'page', 'next']
             , jump(obj, first) {

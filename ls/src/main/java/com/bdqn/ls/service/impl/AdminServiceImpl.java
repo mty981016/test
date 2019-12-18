@@ -31,26 +31,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin login(Admin a) {
-        Admin aa = adminMapper.selectOne(a);
-        Example example = new Example(Mylike.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("adminid", aa.getId());
-        List<Mylike> likeList = likeMapper.selectByExample(example);
-        List<Info> likeInfo = new ArrayList<Info>();
-        Example example1 = new Example(Searchlisi.class);
-        Example.Criteria criteria1 = example.createCriteria();
-        criteria.andEqualTo("adminid", aa.getId());
-        List<Searchlisi> searchlisiList= searchlisiMapper.selectByExample(example1);    //得到当前管理员的搜索历史
-        aa.setSearchlisiList(searchlisiList);
-        for (Mylike like : likeList
-        ) {
 
-            likeInfo.add(infoMapper.findByid(like.getInfoid()));
-
-        }
-
-        aa.setLikes(likeInfo);
-        return aa;
+        return adminMapper.selectOne(a);
     }
 
     @Override
