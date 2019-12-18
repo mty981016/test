@@ -33,11 +33,20 @@
   </select>
 
     <select id="getAllInfo" resultType="com.bdqn.ls.pojo.Info">
+<<<<<<< HEAD
         SELECT * FROM info order by createtime desc
         <if test="isInit==1">
             LIMIT 0,8
         </if>
     </select>
+=======
+    SELECT * FROM info order by createtime desc limit 0,12
+  </select>
+
+    <select id="getCount" resultType="int">
+    SELECT COUNT(1) FROM info
+  </select>
+>>>>>>> fbfc7d7b6f33ea6f07dc709e75715e4e3ae936bd
 
     <select id="getList" resultType="com.bdqn.ls.pojo.Info">
         SELECT * FROM info ORDER BY createtime DESC limit #{curr},#{limit}

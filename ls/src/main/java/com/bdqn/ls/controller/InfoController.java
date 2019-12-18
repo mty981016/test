@@ -48,10 +48,16 @@ public class InfoController {
 
     @RequestMapping("tolist")
     public String tolist(Model model) {      //进入信息列表页面
+<<<<<<< HEAD
         List<Info> infoList = infoService.getAllInfo(1);
+=======
+        model.addAttribute("typelist",typeService.findall());
+
+        List<Info> infoList = infoService.getAllInfo();
+>>>>>>> fbfc7d7b6f33ea6f07dc709e75715e4e3ae936bd
         int count = infoService.getCount();
         model.addAttribute("count", count);
-        model.addAttribute("limit", 8);
+        model.addAttribute("limit", 12);
         model.addAttribute("infolist", infoList);
         return "list";
     }
@@ -87,6 +93,7 @@ public class InfoController {
 
     @RequestMapping(value = "change")
     public String list1(HttpServletRequest request, Model model) {
+        model.addAttribute("typelist",typeService.findall());
         int curr = Integer.parseInt(request.getParameter("curr"));
         int limit = Integer.parseInt(request.getParameter("limit"));
         int count = infoService.getCount();
@@ -129,6 +136,7 @@ public class InfoController {
 
     @RequestMapping(value = "change1")
     public String lchange(HttpServletRequest request, HttpSession session, Model model) {
+        model.addAttribute("typelist",typeService.findall());
         int curr = Integer.parseInt(request.getParameter("curr"));
         int limit = Integer.parseInt(request.getParameter("limit"));
         int count = myLikeService.getCount();

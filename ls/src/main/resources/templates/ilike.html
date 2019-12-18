@@ -46,7 +46,7 @@
             <ul>
                 <li class="likelist" th:each="info:${session.admin.getLikes()}" onclick="todetails()">
                     <input class="infoid" type="hidden" th:value="${info.getId()}">
-                    <img th:src="${info.getPhoto()}" alt="图片显示异常"
+                    <img th:src="${info.getPhoto()}" alt="图片显示异常" title="点击看详情"
                          style="margin-right: 10px;float: left;border-right: #e6e6e6 solid 1.5px" width="120"
                          height="180">
                     <div style="display: inline-block">
