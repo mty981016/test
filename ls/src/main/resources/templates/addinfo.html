@@ -94,22 +94,23 @@
                     <input name="like" class="layui-input" type="text" placeholder="请输入">
                 </div>
             </div>
+
             <div class="layui-form-item">
-                <label class="layui-form-label">现任职岗位</label>
-                <div class="layui-input-block">
-                    <input name="renzi" class="layui-input" type="text" placeholder="请输入">
+                <label class="layui-form-label">教育背景</label>
+                <div class="layui-inline">
+                    <input name="gongsi" class="layui-input" type="text" placeholder="毕业院校">
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">现薪资待遇</label>
-                <div class="layui-input-block">
-                    <input name="xinzi" class="layui-input" type="text" placeholder="请输入">
+                <div class="layui-inline">
+                    <input name="gongsi" class="layui-input" type="text" placeholder="所学专业">
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">现所属公司</label>
-                <div class="layui-input-block">
-                    <input name="gongsi" class="layui-input" type="text" placeholder="请输入">
+                <div class="layui-inline">
+                    <input name="gongsi" class="layui-input" type="text" placeholder="学历">
+                </div>
+                <div class="layui-inline">
+                    <input name="gongsi" class="layui-input" type="text" placeholder="在校时间">
+                </div>
+                <div class="layui-inline" style="margin-right: 0">
+                    <input name="gongsi" class="layui-input" type="text" placeholder="在校表现" style="width: 393px;">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -119,20 +120,25 @@
                 </div>
             </div>
 
-
-
-
-
-
-
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">复选框</label>
+                    <label class="layui-form-label">工作状态</label>
                     <div class="layui-input-block">
                         <input name="isgo" value="1" title="跳槽意向" type="checkbox">
                         <input name="isrenzhi" value="1" title="是否在职" type="checkbox"  checked="">
 
                     </div>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">工作经历</label>
+                    <button type="button" class="layui-btn">
+                        <i class="layui-icon">&#xe654;</i> 添加
+                    </button>
+
+
                 </div>
 
             </div>
@@ -150,7 +156,7 @@
               </div>
             </div>-->
             <div class="layui-form-item">
-                <div class="layui-inline" style="margin-left: 110px;padding-top: 21px;line-height:0px">
+                <div class="layui-inline" style="margin-left: 110px;padding-top: 21px;line-height:0px;height: 400px">
                     <div class="layui-upload">
                         <button class="layui-btn" id="test1" type="button"><i class="layui-icon">&#xe67c;</i>上传照片</button>
                         <div class="layui-upload-list">
@@ -170,6 +176,64 @@
             </div>
         </form>
 
+
+    </div>
+    <div id="addworklisi" style="display: none;padding: 15px;">
+        <form class="layui-form" action="/info/addWork" method="post">
+            <div class="layui-form-item">
+
+                <label class="layui-form-label">公司名称</label>
+                <div class="layui-input-block">
+                    <input name="gongsi" class="layui-input" type="text" lay-verify="required" lay-reqtext="所有信息不能为空！">
+                </div>
+
+
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">职位</label>
+                <div class="layui-input-block">
+                    <input name="zhiwei" class="layui-input" type="text" lay-verify="required" lay-reqtext="所有信息不能为空！">
+                </div>
+            </div>
+            <div class="layui-form-item">
+
+                <label class="layui-form-label">薪资</label>
+                <div class="layui-input-block">
+                    <input name="xinzhi" class="layui-input" type="text" lay-verify="required" lay-reqtext="所有信息不能为空！">
+                </div>
+
+            </div>
+
+            <div class="layui-form-item" >
+                <div class="layui-inline" style="margin-right: 0">
+                    <label class="layui-form-label">时间点</label>
+                    <div class="layui-input-block">
+                        <input  style="width: 169px;display: inline" id="date2" class="layui-input" type="text" placeholder="yyyy-MM-dd" autocomplete="off" lay-verify="date" >
+                        到
+                        <input  style="width: 169px;display: inline;" id="date3" class="layui-input" type="text" placeholder="yyyy-MM-dd" autocomplete="off" lay-verify="date" >
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+            <div class="layui-form-item layui-form-text" >
+                <label class="layui-form-label">工作内容</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-textarea" placeholder="请输入内容" name="comment" lay-verify="required" lay-reqtext="所有信息不能为空！"></textarea>
+                </div>
+            </div>
+            <input type="hidden" name="timedian" id="timedian">
+            <div class="layui-input-block">
+
+                <button class="layui-btn layui-btn-primary" type="reset" style="margin-left: 150px;margin-right: 10px">重置</button>
+                <button class="layui-btn" type="submit" lay-filter="demo1" onsubmit="timedian()">保存</button>
+            </div>
+        </form>
+
     </div>
 
     <div th:replace="~{common/foot :: foot}"></div>
@@ -178,6 +242,28 @@
 <!-- Layui Js -->
 <script type="text/javascript" src="/layui/layui.js"></script>
 <script>
+    function timedian(){    //时间点拼接
+        $("#timedian").val($("#date2").text()+"-"+$("#date3").text);
+    }
+    layui.use('layer', function(){
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        $(".layui-btn").click(function () {
+
+            layer.open({
+                type: 1,
+                area: ['500px', '500px'],
+                title:"添加工作经历",
+                skin: 'layui-layer-molv',
+                content: $('#addworklisi'), //这里content是一个普通的String
+                closeBtn: 1,
+                btnAlign: 'c',
+                anim: 5
+
+            })
+        })
+
+    });
     layui.use('upload', function() {
         var $ = layui.jquery
             , upload = layui.upload;
@@ -224,18 +310,21 @@
         laydate.render({
             elem: '#date1'
         });
+        laydate.render({
+            elem: '#date2'
+        });
+
+        laydate.render({
+            elem: '#date3'
+        });
+
 
         //创建一个编辑器
         var editIndex = layedit.build('LAY_demo_editor');
 
         //自定义验证规则
         form.verify({
-            title: function(value){
-                if(value.length < 5){
-                    return '标题至少得5个字符啊';
-                }
-            }
-            ,pass: [
+          pass: [
                 /^[\S]{6,12}$/
                 ,'密码必须6到12位，且不能出现空格'
             ]

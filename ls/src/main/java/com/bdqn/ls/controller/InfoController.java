@@ -1,8 +1,10 @@
 package com.bdqn.ls.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bdqn.ls.pojo.Admin;
 import com.bdqn.ls.pojo.Info;
+import com.bdqn.ls.pojo.Worklisi;
 import com.bdqn.ls.service.InfoService;
 import com.bdqn.ls.service.LevelService;
 import com.bdqn.ls.service.MyLikeService;
@@ -22,10 +24,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("info")
@@ -183,5 +182,15 @@ public class InfoController {
         model.addAttribute("limit", limit);
         model.addAttribute("level", 3);
         return "list";
+    }
+    private Map<String,Worklisi> workmap=new HashMap<String, Worklisi>();
+    private List<Worklisi> workList=new ArrayList<Worklisi>();
+    @ResponseBody
+    @RequestMapping("addWork")
+    public  String addWork(Worklisi worklisi,HttpSession session){
+        workList.add(worklisi);
+        session.setAttribute("workList",workList);
+        workmap.put(worklisi.getGongsi(),worklisi);
+        return JSONArray.toJSONString(workmap);
     }
 }
