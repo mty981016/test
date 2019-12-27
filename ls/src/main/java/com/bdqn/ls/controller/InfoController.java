@@ -86,6 +86,7 @@ public class InfoController {
         if (result1 > 0) {
             List<Worklisi> list = (List<Worklisi>) session.getAttribute("workList");
             Info tempInfo = infoService.getNewInfo();
+            System.out.println(tempInfo.getId()+"-----newId");
             info.getTeachback().setInfoid(tempInfo.getId());
             result2 = teachBackService.addTeachBack(info.getTeachback());
             if (result2 > 0) {
@@ -143,17 +144,17 @@ public class InfoController {
         String ext = FilenameUtils.getExtension(file.getOriginalFilename());
         String filenames = filename + "." + ext;
         System.out.println(filenames + "---new");
-        String pathname = "C:\\Users\\Administrator\\Pictures\\Camera Roll\\" + file.getOriginalFilename();
+        String pathname = "E:\\GIt代码仓库\\test\\ls\\src\\main\\resources\\static\\uploadimg\\" + filenames;
         try {
             file.transferTo(new File(pathname));
-            resUrl.put("src", pathname);
+            resUrl.put("src", "/uploadimg/"+filenames);
             res.put("msg", "上传成功");
             res.put("code", 0);
             res.put("data", resUrl);
             return res;
         } catch (IOException e) {
             e.printStackTrace();
-            resUrl.put("src", pathname);
+            resUrl.put("src", "/uploadimg/"+filenames);
             res.put("msg", "上传出错");
             res.put("code", 1);
             res.put("data", resUrl);
