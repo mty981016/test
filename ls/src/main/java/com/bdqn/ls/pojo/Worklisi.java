@@ -17,7 +17,7 @@ public class Worklisi {
 
     private Integer infoid;
 
-    private byte[] comment;
+    private String comment;
 
     /**
      * @return id
@@ -106,14 +106,14 @@ public class Worklisi {
     /**
      * @return comment
      */
-    public byte[] getComment() {
+    public String getComment() {
         return comment;
     }
 
     /**
      * @param comment
      */
-    public void setComment(byte[] comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 }

@@ -6,11 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface InfoService {
-    List<Info> findInfo(int pageNo, int pageSize, Map<String, String> maps);
 
     int addInfo(Info info);
-
-    Info findOneById(int id);
 
     Info findByid(int id);
 
@@ -26,10 +23,12 @@ public interface InfoService {
 
     List<Info> getInfoByLevel(int level, int curr, int limit);
 
-    List<Info> getMyLikeById(int id,int curr, int limit);
+    List<Info> getMyLikeById(int id, int curr, int limit);
 
     int getCountByLevel(int level);
 
     int getCountBylikelist(int id);
+
+    Info getNewInfo();
 
 }

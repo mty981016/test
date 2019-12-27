@@ -16,16 +16,6 @@ public class InfoServiceImpl implements InfoService {
     private InfoMapper infoMapper;
 
     @Override
-    public Info findOneById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<Info> findInfo(int pageNo, int pageSize, Map<String, String> maps) {
-        return null;
-    }
-
-    @Override
     public int addInfo(Info info) {
         return infoMapper.insert(info);
     }
@@ -79,5 +69,10 @@ public class InfoServiceImpl implements InfoService {
     @Override
     public int getCountBylikelist(int id) {
         return infoMapper.getCountBylikelist(id);
+    }
+
+    @Override
+    public Info getNewInfo() {
+        return infoMapper.getNewInfo();
     }
 }

@@ -1,5 +1,7 @@
 package com.bdqn.ls.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -72,6 +74,7 @@ public class Info {
 
     private String email;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     private Type type;

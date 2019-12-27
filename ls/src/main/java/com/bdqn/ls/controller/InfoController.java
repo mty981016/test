@@ -4,11 +4,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bdqn.ls.pojo.Admin;
 import com.bdqn.ls.pojo.Info;
+import com.bdqn.ls.pojo.Teachback;
 import com.bdqn.ls.pojo.Worklisi;
-import com.bdqn.ls.service.InfoService;
-import com.bdqn.ls.service.LevelService;
-import com.bdqn.ls.service.MyLikeService;
-import com.bdqn.ls.service.TypeService;
+import com.bdqn.ls.service.*;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +34,9 @@ public class InfoController {
     @Autowired
     private TypeService typeService;
     @Autowired
-    private MyLikeService myLikeService;
+    private TeachBackService teachBackService;
+    @Autowired
+    private WorkLisiService workLisiService;
 
     @RequestMapping("tomain")
     public String tomain(Model model) {
@@ -64,24 +64,56 @@ public class InfoController {
     }
 
     @RequestMapping("toAdd")
-    public String toAdd(Model model) {       //进入添加信息页面
+    public String toAdd(Model model, HttpSession session) {       //进入添加信息页面
         model.addAttribute("typeList", typeService.findall());
         model.addAttribute("levelList", levelService.findAll());
-
         return "addinfo";
     }
 
     @RequestMapping("doAdd")
-    public String doAdd(Info info) {         //添加操作
+    public String doAdd(Info info, HttpSession session) {         //添加操作
         System.out.println("进来哦了");
         info.setCreatetime(new Date());
-        int result = infoService.addInfo(info);
-        if (result > 0) {
-            System.out.println("添加成功");
-            return "list";
+        //默认值
+        if (info.getIsgo() == null) {
+            info.setIsgo(0);
+        }
+        if (info.getIsrenzhi() == null) {
+            info.setIsrenzhi(0);
+        }
+        int result1 = infoService.addInfo(info);
+        int result2 = 0;
+        if (result1 > 0) {
+            List<Worklisi> list = (List<Worklisi>) session.getAttribute("workList");
+            Info tempInfo = infoService.getNewInfo();
+            info.getTeachback().setInfoid(tempInfo.getId());
+            result2 = teachBackService.addTeachBack(info.getTeachback());
+            if (result2 > 0) {
+                int result3 = 0;
+                if (list != null) {
+                    for (Worklisi worklisi : list) {
+                        worklisi.setInfoid(tempInfo.getId());
+                        result3 += workLisiService.addWorkLisi(worklisi);
+                    }
+                    if (result3 == list.size()) {
+                        System.out.println("添加成功");
+                        session.removeAttribute("workList");
+                        return "redirect:/info/tolist";
+                    } else {
+                        return "addinfo";
+                    }
+                } else {
+                    System.out.println("添加成功");
+                    session.removeAttribute("workList");
+                    return "redirect:/info/tolist";
+                }
+            } else {
+                System.out.println("添加失败");
+                return "addinfo";
+            }
         } else {
             System.out.println("添加失败");
-            return "list";
+            return "addinfo";
         }
 
     }
@@ -111,7 +143,7 @@ public class InfoController {
         String ext = FilenameUtils.getExtension(file.getOriginalFilename());
         String filenames = filename + "." + ext;
         System.out.println(filenames + "---new");
-        String pathname = "E:\\Git本地仓库\\ls\\src\\main\\resources\\static\\uploadimg\\" + filenames;
+        String pathname = "C:\\Users\\Administrator\\Pictures\\Camera Roll\\" + file.getOriginalFilename();
         try {
             file.transferTo(new File(pathname));
             resUrl.put("src", pathname);
@@ -137,8 +169,8 @@ public class InfoController {
         int curr = Integer.parseInt(request.getParameter("curr"));
         int limit = Integer.parseInt(request.getParameter("limit"));
         int count = infoService.getCountBylikelist(admin.getId());
-        admin.setLikes(infoService.getMyLikeById(admin.getId(),(curr - 1) * limit, limit));
-        System.out.println(curr+"--"+limit+"--"+count);
+        admin.setLikes(infoService.getMyLikeById(admin.getId(), (curr - 1) * limit, limit));
+        System.out.println(curr + "--" + limit + "--" + count);
         model.addAttribute("count", count);
         model.addAttribute("curr", curr);
         model.addAttribute("limit", limit);
@@ -183,14 +215,25 @@ public class InfoController {
         model.addAttribute("level", 3);
         return "list";
     }
-    private Map<String,Worklisi> workmap=new HashMap<String, Worklisi>();
-    private List<Worklisi> workList=new ArrayList<Worklisi>();
-    @ResponseBody
+
+    private List<Worklisi> workList = new ArrayList<Worklisi>();
+
     @RequestMapping("addWork")
-    public  String addWork(Worklisi worklisi,HttpSession session){
+    public String addWork(@RequestParam(value = "date2") String date2, @RequestParam(value = "date3") String date3,
+                          Worklisi worklisi, HttpSession session) {
+        worklisi.setTimedian(date2 + "-" + date3);
         workList.add(worklisi);
-        session.setAttribute("workList",workList);
-        workmap.put(worklisi.getGongsi(),worklisi);
-        return JSONArray.toJSONString(workmap);
+        session.setAttribute("workList", workList);
+        return "redirect:/info/toAdd";
+    }
+
+    @RequestMapping("delWork")
+    public String delWork(HttpServletRequest request, HttpSession session) {
+        String tempIndex = request.getParameter("index");
+        int index = Integer.parseInt(tempIndex);
+        List<Worklisi> workList = (List<Worklisi>) session.getAttribute("workList");
+        workList.remove(index);
+        session.setAttribute("workList", workList);
+        return "redirect:/info/toAdd";
     }
 }

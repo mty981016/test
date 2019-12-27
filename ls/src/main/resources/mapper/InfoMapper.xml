@@ -73,9 +73,13 @@
     <select id="getCountByLevel" resultType="int">
         SELECT COUNT(1) FROM info WHERE levelid=#{level}
     </select>
+
     <select id="getCountBylikelist" resultType="int">
         SELECT COUNT(1) FROM mylike WHERE adminid=#{id}
     </select>
 
+    <select id="getNewInfo" resultType="com.bdqn.ls.pojo.Info">
+        SELECT * FROM info WHERE info.id=(SELECT MAX(id) FROM info)
+    </select>
 
 </mapper>
