@@ -19,7 +19,7 @@ public interface InfoService {
 
     int getCount();
 
-    List<Info> getList(int curr, int limit);
+    List<Info> getList(int curr, int limit,Map<String,Object> parMap);
 
     List<Info> getInfoByLevel(int level, int curr, int limit);
 
@@ -30,5 +30,7 @@ public interface InfoService {
     int getCountBylikelist(int id);
 
     Info getNewInfo();
+
+    int getCountBysearch(Map<String,Object> map);
 
 }

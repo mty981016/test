@@ -45,18 +45,19 @@
             display: none;
             position: absolute;
             width: 400px;
-            height: 500px;
+            height: 300px;
             border: #e6e6e6 solid 1px;
             border-radius: 5px;
             top: 50px;
             right: 140px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 1);
         }
 
         .searchtisi {
             text-align: left;
+            margin-top: 4px;
             width: 199.5px;
-            height: 300px;
+            height: 290px;
             float: left;
         }
 
@@ -102,10 +103,10 @@
             <button type="button" style="height: 48px;width: 50px;position: absolute;right: -1px;"
                     class="layui-btn layui-btn-sm" id="search-btn">
             </button>
-            <i style="font-size: 30px;position:absolute;top: 9px;right: 9px" class="layui-icon  layui-icon-search"
-               id="search-icon"></i>
+            <i style="font-size: 30px;position:absolute;top: 9px;right: 9px;" class="layui-icon  layui-icon-search"
+               id="search-icon" onmouseover="this.style.cursor='hand'"></i>
             <div id="searchss">
-                <div class="searchtisi" style="border-right: red solid 1px">
+                <div class="searchtisi" style="border-right:  #009E94 solid 1px">
                     <fieldset class="layui-elem-field layui-field-title"
                               style="border-color: #009E94;">
                         <legend style="font-size: 16px">猜你想搜</legend>
@@ -114,7 +115,7 @@
                                 <h3>职业</h3>
                                 <ul class="searchlist3">
                                     <li th:each="type:${typelist}" th:value="${type.getId()}">
-                                        <a href="" th:text="${type.getName()}"></a>
+                                        <a href="#" th:text="${type.getName()}"></a>
                                     </li>
                                 </ul>
                             </li>
@@ -123,10 +124,11 @@
                             <li class="searchlist2">
                                 <h3>学历</h3>
                                 <ul class="searchlist3">
-                                    <li><a href="">大专</a></li>
-                                    <li><a href="">本科</a></li>
-                                    <li><a href="">研究生</a></li>
-                                    <li><a href="">硕士</a></li>
+                                    <li><a href="#">大专</a></li>
+                                    <li><a href="#">本科</a></li>
+                                    <li><a href="#">研究生</a></li>
+                                    <li><a href="#">硕士</a></li>
+                                    <li><a href="#">博士</a></li>
                                 </ul>
                             </li>
                             <br>
@@ -134,9 +136,9 @@
                             <li class="searchlist2">
                                 <h3>近况</h3>
                                 <ul class="searchlist3">
-                                    <li><a href="">在职有跳槽倾向</a></li>
-                                    <li><a href="">不在职</a></li>
-                                    <li><a href="">在职无跳槽倾向</a></li>
+                                    <li><a href="#">在职有跳槽意向</a></li>
+                                    <li><a href="#">不在职</a></li>
+                                    <li><a href="#">在职无跳槽意向</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -148,8 +150,16 @@
                         <legend style="font-size: 16px">搜索历史</legend>
                         <ul class="searchlist1">
                             <li class="searchlist2" th:each="searchlisi:${session.admin.getSearchlisiList()}">
-                                <a href="" th:value="${searchlisi.getId()}" th:text="${searchlisi.getSearchname()}"></a>
+                                <a href="#" th:value="${searchlisi.getId()}" th:text="${searchlisi.getSearchname()}"></a>
                             </li>
+                            <div style="position:absolute;font-size: 12px;right: 10px">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024"
+                                     width="12" height="12" t="1577420688007" p-id="1965" version="1.1">
+                                    <path fill="#4d4d4d" d="M 897.2 128 H 578.7 c -1.6 -34.7 -30.2 -62.4 -65.3 -62.4 s -63.8 27.7 -65.3 62.4 h -320 c -17.5 0 -31.9 14.4 -31.9 31.9 s 14.4 31.9 31.9 31.9 H 192 v 639.8 c 0 70.4 57.6 128 128 128 h 384.1 c 70.4 0 128 -57.6 128 -128 V 676.2 c 0.1 -1.2 0.2 -2.4 0.2 -3.6 c 0.1 -17.8 -14.4 -32.1 -32.1 -32.1 c -17.8 0 -32.2 14.4 -32.2 32.1 v 159.1 c 0 35.2 -28.8 64 -64 64 H 320 c -35.2 0 -64 -28.8 -64 -64 V 191.8 h 511.9 v 223.1 c 0 17.7 14.4 32.1 32.2 32.1 s 32.2 -14.4 32.2 -32.1 c 0 -1.2 -0.1 -2.4 -0.2 -3.6 V 191.8 h 65.1 c 17.6 0 31.9 -14.4 31.9 -31.9 S 914.7 128 897.2 128 Z" p-id="1966" /><path fill="#4d4d4d" d="M 386.9 350.6 v 386.6 c 0 16.8 13.8 30.6 30.6 30.6 s 30.6 -13.8 30.6 -30.5 V 350.6 c 0 -16.8 -13.8 -30.6 -30.6 -30.6 s -30.6 13.8 -30.6 30.6 Z M 576.7 350.6 v 386.6 c 0 16.8 13.8 30.6 30.6 30.6 s 30.6 -13.8 30.6 -30.5 V 350.6 c 0 -16.8 -13.8 -30.6 -30.6 -30.6 s -30.6 13.8 -30.6 30.6 Z" p-id="1967" /><path fill="#4d4d4d" d="M 768 543.7 a 32.2 32.1 0 1 0 64.4 0 a 32.2 32.1 0 1 0 -64.4 0 Z" p-id="1968" />
+                                </svg>
+                                <a href="#">清空历史</a>
+                            </div>
+                           
                         </ul>
                     </fieldset>
                 </div>
@@ -198,12 +208,18 @@
 
         //后面就跟你平时使用jQuery一样
         $("#search").click(function () {
-            $("#searchss").css("display", "block");
+
+            if( $("#searchss").css("display")=="none"){
+                $("#searchss").css("display", "block");
+            }else{
+                $("#searchss").css("display", "none");
+            }
+
         })
-        $("#search").blur(function () {
+    /*    $("#search").blur(function () {
             $("#searchss").css("display", "none");
         })
-
+*/
 
     });
     ;
@@ -254,8 +270,21 @@
     })
 
     $(function () {
+        $("#searchss").find('a').click(function () {
+            if( $('#search').val()==null|| $('#search').val()==""){
+                $('#search').val($(this).text());
+            }else{
+                $('#search').val($('#search').val()+"、"+$(this).text());
+            }
+
+        })
+       /* $("search-icon").mouseover(function () {
+            alert("sss")
+            $(this).style.cursor='hand';
+        })*/
         $("#search-btn,#search-icon").click(function () {
-            //搜索按钮单击事件
+            var search= $('#search').val();
+            location.href="/info/search?search="+search;
         });
     });
 </script>

@@ -47,8 +47,42 @@
     SELECT COUNT(1) FROM info
   </select>
 
-    <select id="getList" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap">
-        SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id ORDER BY i.createtime DESC limit #{curr},#{limit}
+    <select id="getList" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap" parameterType="map">
+        SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id
+        <if test="map.typeid!=null and map.typeid.size()>0">
+                 and i.typeid in
+        <foreach item="item" index="index" collection="map.typeid"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </if>
+        <if test="map.xueli!=null and map.xueli.size()>0">
+            and i.id in (SELECT infoid FROM teachback WHERE xueli IN
+            <foreach item="item" index="index" collection="map.xueli"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            )
+        </if>
+        <if test=" map.isrenzhi!=null and map.isrenzhi.size()>0">
+            and i.isrenzhi in
+            <foreach item="item" index="index" collection="map.isrenzhi"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="map.isgo!=null and map.isgo.size()>0">
+            and i.isgo in
+            <foreach item="item" index="index" collection="map.isgo"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="map.name!=null and map.name!=''">
+            and i.name like CONCAT('%',#{map.name},'%')
+        </if>
+
+        ORDER BY i.createtime DESC limit #{curr},#{limit}
     </select>
 
     <select id="findByid" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap">
@@ -80,6 +114,43 @@
 
     <select id="getNewInfo" resultType="com.bdqn.ls.pojo.Info">
         SELECT * FROM info WHERE info.id=(SELECT MAX(id) FROM info)
+    </select>
+
+    <select id="getCountBysearch" resultType="int" parameterType="map">
+    SELECT COUNT(1) FROM info i where 1=1
+        <if test="map.typeid!=null and map.typeid.size()>0">
+            and i.typeid in
+            <foreach item="item" index="index" collection="map.typeid"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="map.xueli!=null and map.xueli.size()>0">
+            and i.id in (SELECT infoid FROM teachback WHERE xueli IN
+            <foreach item="item" index="index" collection="map.xueli"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            )
+        </if>
+        <if test=" map.isrenzhi!=null and map.isrenzhi.size()>0">
+            and i.isrenzhi in
+            <foreach item="item" index="index" collection="map.isrenzhi"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="map.isgo!=null and map.isgo.size()>0">
+            and i.isgo in
+            <foreach item="item" index="index" collection="map.isgo"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="map.name!=null and map.name!=''">
+            and i.name like CONCAT('%',#{map.name},'%')
+        </if>
+
     </select>
 
 </mapper>

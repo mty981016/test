@@ -47,8 +47,8 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public List<Info> getList(int curr, int limit) {
-        return infoMapper.getList(curr, limit);
+    public List<Info> getList(int curr, int limit,Map<String,Object> parMap) {
+        return infoMapper.getList(curr, limit,parMap);
     }
 
     @Override
@@ -74,5 +74,10 @@ public class InfoServiceImpl implements InfoService {
     @Override
     public Info getNewInfo() {
         return infoMapper.getNewInfo();
+    }
+
+    @Override
+    public int getCountBysearch(Map<String, Object> map) {
+        return infoMapper.getCountBysearch(map);
     }
 }

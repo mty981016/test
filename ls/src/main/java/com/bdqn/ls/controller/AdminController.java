@@ -4,6 +4,7 @@ import com.bdqn.ls.pojo.Admin;
 import com.bdqn.ls.pojo.Info;
 import com.bdqn.ls.service.InfoService;
 import com.bdqn.ls.service.MyLikeService;
+import com.bdqn.ls.service.SearchlisiService;
 import com.bdqn.ls.service.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,8 @@ public class AdminController {
     private InfoService infoService;
     @Autowired
     private MyLikeService myLikeService;
-
+    @Autowired
+    private SearchlisiService searchlisiService;
     @RequestMapping("/")
     public String toLogin() {
         return "index";
@@ -32,6 +34,7 @@ public class AdminController {
     public String login(Admin admin, HttpSession session, Model model) {
         model.addAttribute("msg", "");
         Admin aa = asi.login(admin);
+        aa.setSearchlisiList(searchlisiService.findByadminid(aa.getId()));
         if (aa != null) {
             session.setAttribute("admin", aa);
             return "redirect:/info/tomain";//调用config包下配置类所实现的视图解析器进行跳转
