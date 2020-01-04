@@ -7,9 +7,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @MapperScan("com.bdqn.ls.dao")
 public class LsApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(LsApplication.class, args);
     }
-
 }

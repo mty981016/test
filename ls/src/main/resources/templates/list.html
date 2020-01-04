@@ -99,7 +99,7 @@
             人才信息列表
         </blockquote>
         <div id="searchdiv">
-            <input type="text" id="search" placeholder="搜索">
+            <input type="text" id="search" placeholder="搜索" th:value="${search==null}?'':${search}">
             <button type="button" style="height: 48px;width: 50px;position: absolute;right: -1px;"
                     class="layui-btn layui-btn-sm" id="search-btn">
             </button>
@@ -150,16 +150,25 @@
                         <legend style="font-size: 16px">搜索历史</legend>
                         <ul class="searchlist1">
                             <li class="searchlist2" th:each="searchlisi:${session.admin.getSearchlisiList()}">
-                                <a href="#" th:value="${searchlisi.getId()}" th:text="${searchlisi.getSearchname()}"></a>
+                                <a href="#" th:value="${searchlisi.getId()}"
+                                   th:text="${searchlisi.getSearchname()}"></a>
                             </li>
                             <div style="position:absolute;font-size: 12px;right: 10px">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024"
                                      width="12" height="12" t="1577420688007" p-id="1965" version="1.1">
-                                    <path fill="#4d4d4d" d="M 897.2 128 H 578.7 c -1.6 -34.7 -30.2 -62.4 -65.3 -62.4 s -63.8 27.7 -65.3 62.4 h -320 c -17.5 0 -31.9 14.4 -31.9 31.9 s 14.4 31.9 31.9 31.9 H 192 v 639.8 c 0 70.4 57.6 128 128 128 h 384.1 c 70.4 0 128 -57.6 128 -128 V 676.2 c 0.1 -1.2 0.2 -2.4 0.2 -3.6 c 0.1 -17.8 -14.4 -32.1 -32.1 -32.1 c -17.8 0 -32.2 14.4 -32.2 32.1 v 159.1 c 0 35.2 -28.8 64 -64 64 H 320 c -35.2 0 -64 -28.8 -64 -64 V 191.8 h 511.9 v 223.1 c 0 17.7 14.4 32.1 32.2 32.1 s 32.2 -14.4 32.2 -32.1 c 0 -1.2 -0.1 -2.4 -0.2 -3.6 V 191.8 h 65.1 c 17.6 0 31.9 -14.4 31.9 -31.9 S 914.7 128 897.2 128 Z" p-id="1966" /><path fill="#4d4d4d" d="M 386.9 350.6 v 386.6 c 0 16.8 13.8 30.6 30.6 30.6 s 30.6 -13.8 30.6 -30.5 V 350.6 c 0 -16.8 -13.8 -30.6 -30.6 -30.6 s -30.6 13.8 -30.6 30.6 Z M 576.7 350.6 v 386.6 c 0 16.8 13.8 30.6 30.6 30.6 s 30.6 -13.8 30.6 -30.5 V 350.6 c 0 -16.8 -13.8 -30.6 -30.6 -30.6 s -30.6 13.8 -30.6 30.6 Z" p-id="1967" /><path fill="#4d4d4d" d="M 768 543.7 a 32.2 32.1 0 1 0 64.4 0 a 32.2 32.1 0 1 0 -64.4 0 Z" p-id="1968" />
+                                    <path fill="#4d4d4d"
+                                          d="M 897.2 128 H 578.7 c -1.6 -34.7 -30.2 -62.4 -65.3 -62.4 s -63.8 27.7 -65.3 62.4 h -320 c -17.5 0 -31.9 14.4 -31.9 31.9 s 14.4 31.9 31.9 31.9 H 192 v 639.8 c 0 70.4 57.6 128 128 128 h 384.1 c 70.4 0 128 -57.6 128 -128 V 676.2 c 0.1 -1.2 0.2 -2.4 0.2 -3.6 c 0.1 -17.8 -14.4 -32.1 -32.1 -32.1 c -17.8 0 -32.2 14.4 -32.2 32.1 v 159.1 c 0 35.2 -28.8 64 -64 64 H 320 c -35.2 0 -64 -28.8 -64 -64 V 191.8 h 511.9 v 223.1 c 0 17.7 14.4 32.1 32.2 32.1 s 32.2 -14.4 32.2 -32.1 c 0 -1.2 -0.1 -2.4 -0.2 -3.6 V 191.8 h 65.1 c 17.6 0 31.9 -14.4 31.9 -31.9 S 914.7 128 897.2 128 Z"
+                                          p-id="1966"/>
+                                    <path fill="#4d4d4d"
+                                          d="M 386.9 350.6 v 386.6 c 0 16.8 13.8 30.6 30.6 30.6 s 30.6 -13.8 30.6 -30.5 V 350.6 c 0 -16.8 -13.8 -30.6 -30.6 -30.6 s -30.6 13.8 -30.6 30.6 Z M 576.7 350.6 v 386.6 c 0 16.8 13.8 30.6 30.6 30.6 s 30.6 -13.8 30.6 -30.5 V 350.6 c 0 -16.8 -13.8 -30.6 -30.6 -30.6 s -30.6 13.8 -30.6 30.6 Z"
+                                          p-id="1967"/>
+                                    <path fill="#4d4d4d"
+                                          d="M 768 543.7 a 32.2 32.1 0 1 0 64.4 0 a 32.2 32.1 0 1 0 -64.4 0 Z"
+                                          p-id="1968"/>
                                 </svg>
                                 <a href="#">清空历史</a>
                             </div>
-                           
+
                         </ul>
                     </fieldset>
                 </div>
@@ -209,17 +218,17 @@
         //后面就跟你平时使用jQuery一样
         $("#search").click(function () {
 
-            if( $("#searchss").css("display")=="none"){
+            if ($("#searchss").css("display") == "none") {
                 $("#searchss").css("display", "block");
-            }else{
+            } else {
                 $("#searchss").css("display", "none");
             }
 
         })
-    /*    $("#search").blur(function () {
-            $("#searchss").css("display", "none");
-        })
-*/
+        /*    $("#search").blur(function () {
+                $("#searchss").css("display", "none");
+            })
+    */
 
     });
     ;
@@ -228,10 +237,14 @@
         var element = layui.element;
 
     });
+
+    //此处获取分页所需信息
     var count = document.getElementById("count").value;
     var curr = document.getElementById("curr").value;
     var limit = document.getElementById("limit").value;
     var level = document.getElementById("level").value;
+    var search = document.getElementById("search").value;
+
     if (limit == null) {
         limit = 8;
     } else if (limit == "32" || limit == 32) {
@@ -254,7 +267,7 @@
                     // $('tbody').empty();
                     //调用加载函数加载数据
                     if (level == "0") {
-                        location.href = "/info/change?curr=" + obj.curr + "&limit=" + obj.limit + "&level=0";
+                        location.href = "/info/change?curr=" + obj.curr + "&limit=" + obj.limit + "&level=0&search=" + search;
                     } else if (level == "1") {
                         location.href = "/info/getListByLevel1?curr=" + obj.curr + "&limit=" + obj.limit + "&level=1";
                     } else if (level == "2") {
@@ -271,20 +284,20 @@
 
     $(function () {
         $("#searchss").find('a').click(function () {
-            if( $('#search').val()==null|| $('#search').val()==""){
+            if ($('#search').val() == null || $('#search').val() == "") {
                 $('#search').val($(this).text());
-            }else{
-                $('#search').val($('#search').val()+"、"+$(this).text());
+            } else {
+                $('#search').val($('#search').val() + "、" + $(this).text());
             }
 
         })
-       /* $("search-icon").mouseover(function () {
-            alert("sss")
-            $(this).style.cursor='hand';
-        })*/
+        /* $("search-icon").mouseover(function () {
+             alert("sss")
+             $(this).style.cursor='hand';
+         })*/
         $("#search-btn,#search-icon").click(function () {
-            var search= $('#search').val();
-            location.href="/info/search?search="+search;
+            var search = $('#search').val();
+            location.href = "/info/search?search=" + search;
         });
     });
 </script>

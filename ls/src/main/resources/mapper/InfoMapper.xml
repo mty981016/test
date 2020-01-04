@@ -48,14 +48,14 @@
   </select>
 
     <select id="getList" resultType="com.bdqn.ls.pojo.Info" resultMap="BaseResultMap" parameterType="map">
-        SELECT	i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id
+        SELECT i.*,t.name typename FROM info i,TYPE t WHERE i.typeid=t.id
         <if test="map.typeid!=null and map.typeid.size()>0">
-                 and i.typeid in
-        <foreach item="item" index="index" collection="map.typeid"
-                 open="(" separator="," close=")">
-            #{item}
-        </foreach>
-    </if>
+            and i.typeid in
+            <foreach item="item" index="index" collection="map.typeid"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
         <if test="map.xueli!=null and map.xueli.size()>0">
             and i.id in (SELECT infoid FROM teachback WHERE xueli IN
             <foreach item="item" index="index" collection="map.xueli"
@@ -81,7 +81,6 @@
         <if test="map.name!=null and map.name!=''">
             and i.name like CONCAT('%',#{map.name},'%')
         </if>
-
         ORDER BY i.createtime DESC limit #{curr},#{limit}
     </select>
 
@@ -117,7 +116,7 @@
     </select>
 
     <select id="getCountBysearch" resultType="int" parameterType="map">
-    SELECT COUNT(1) FROM info i where 1=1
+        SELECT COUNT(1) FROM info i where 1=1
         <if test="map.typeid!=null and map.typeid.size()>0">
             and i.typeid in
             <foreach item="item" index="index" collection="map.typeid"
