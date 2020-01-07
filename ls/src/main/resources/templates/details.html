@@ -71,7 +71,7 @@
                 <div id="name" style="padding:15px">
                     <p th:text="${info.getName()}"></p>
                     <hr style="height:1px; width:180px;border:none;border-top:1px solid #0000FF;" />
-                    <p>专业类型：<span th:text="${info.getTypename()}"></span></p>
+                    <p>专业类型：<span th:text="${info.getType().getName()}"></span></p>
                 </div>
                 <div id="jianjie" style="text-align: left; padding:15px 35px ; ">
                     <p>      出生日期：<span th:data=" ${info.getBirthday()}"></span></p>

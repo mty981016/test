@@ -1,6 +1,7 @@
 package com.bdqn.ls.service.impl;
 
 import com.bdqn.ls.dao.InfoMapper;
+import com.bdqn.ls.dao.TeachbackMapper;
 import com.bdqn.ls.pojo.Info;
 import com.bdqn.ls.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ public class InfoServiceImpl implements InfoService {
 
     @Autowired
     private InfoMapper infoMapper;
+    @Autowired
+    private TeachbackMapper teachbackMapper;
 
     @Override
     public int addInfo(Info info) {
@@ -48,6 +51,7 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     public List<Info> getList(int curr, int limit,Map<String,Object> parMap) {
+
         return infoMapper.getList(curr, limit,parMap);
     }
 
@@ -58,6 +62,7 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     public List<Info> getInfoByLevel(int level, int curr, int limit) {
+
         return infoMapper.getInfoByLevel(level, curr, limit);
     }
 
@@ -78,6 +83,7 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     public int getCountBysearch(Map<String, Object> map) {
+
         return infoMapper.getCountBysearch(map);
     }
 }

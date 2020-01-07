@@ -13,4 +13,11 @@
     <result column="infoid" jdbcType="INTEGER" property="infoid" />
     <result column="xueli" jdbcType="VARCHAR" property="xueli" />
   </resultMap>
+  <select id="findInfoidByxueli" resultType="int">
+    select infoid FROM teachback WHERE xueli IN
+    <foreach item="item" index="index" collection="xueli"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
 </mapper>

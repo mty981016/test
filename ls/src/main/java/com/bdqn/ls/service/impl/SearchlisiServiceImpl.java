@@ -17,6 +17,16 @@ public class SearchlisiServiceImpl implements SearchlisiService {
         Example example  =new Example(Searchlisi.class);
         Example.Criteria criteria =example.createCriteria();
         criteria.andEqualTo("adminid",id);
+
         return searchlisiMapper.selectByExample(example);
+    }
+
+    @Override
+    public int delSearchlisi(int adminid) {
+        Example example  =new Example(Searchlisi.class);
+        Example.Criteria criteria =example.createCriteria();
+        criteria.andEqualTo("adminid",adminid);
+
+        return searchlisiMapper.deleteByExample(example);
     }
 }

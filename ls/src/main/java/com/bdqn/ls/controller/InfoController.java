@@ -2,6 +2,7 @@ package com.bdqn.ls.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.bdqn.ls.dao.SearchlisiMapper;
 import com.bdqn.ls.pojo.*;
 import com.bdqn.ls.service.*;
 import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
@@ -35,7 +36,10 @@ public class InfoController {
     private TeachBackService teachBackService;
     @Autowired
     private WorkLisiService workLisiService;
-
+    @Autowired
+    private SearchlisiService searchlisiService;
+    @Autowired
+    private SearchlisiMapper searchlisiMapper;
     @RequestMapping("tomain")
     public String tomain(Model model) {
         model.addAttribute("mainlist1", infoService.mainlist1());
@@ -168,10 +172,17 @@ public class InfoController {
                     }
                 }
             }
+
             pamMap.put("typeid", parmTypes);
             pamMap.put("xueli;", parmXueli);
             pamMap.put("isgo;", isgo);
             pamMap.put("isrenzhi;", isrenzhi);
+
+            pamMap.put("typeid",parmTypes);
+            pamMap.put("xueli",parmXueli);
+            pamMap.put("isgo",isgo);
+            pamMap.put("isrenzhi",isrenzhi);
+
         }
         list = infoService.getList((curr - 1) * limit, limit, pamMap);
 
@@ -291,16 +302,25 @@ public class InfoController {
     }
 
     @RequestMapping("search")
-    public String search(Model model, @RequestParam(value = "search", required = false) String search) {
-        Map<String, Object> pamMap = new HashMap<String, Object>();
-        List<Integer> parmTypes = new ArrayList<Integer>();
-        List<String> parmXueli = new ArrayList<String>();
-        List<Integer> isgo = new ArrayList<Integer>();
-        List<Integer> isrenzhi = new ArrayList<Integer>();
-        boolean b = false;
-        String[] searchs = search.split("、");
-        for (int i = 0; i < searchs.length; i++) {
-            for (Type type : typeService.findall()
+
+
+    public String search(Model model,@RequestParam(value = "search",required = false)String search,HttpSession session){
+        Map<String,Object> pamMap=new HashMap<String, Object>();
+        List<Integer> parmTypes=new ArrayList<Integer>();
+        List<String> parmXueli=new ArrayList<String>();
+        List<Integer> isgo= new ArrayList<Integer>();
+        List<Integer> isrenzhi= new ArrayList<Integer>();
+        Searchlisi searchlisi=new Searchlisi();
+        Admin admin=(Admin)session.getAttribute("admin");
+        searchlisi.setAdminid((admin.getId()));
+        searchlisi.setSearchname(search);
+        searchlisiMapper.insert(searchlisi);
+        admin.setSearchlisiList(searchlisiService.findByadminid(admin.getId()));
+        boolean b=false;
+        String[] searchs=search.split("、");
+        for (int i=0;i<searchs.length;i++){
+            for ( Type type:typeService.findall()
+
             ) {
                 if (searchs[i].equals(type.getName())) {
                     parmTypes.add(type.getId());
@@ -322,23 +342,33 @@ public class InfoController {
                     parmXueli.add("硕士");
                 } else if ("博士".equals(searchs[i])) {
                     parmXueli.add("博士");
-                } else if ("在职有跳槽意向".equals(searchs[i])) {
+                } else if ("有跳槽意向".equals(searchs[i])) {
                     isgo.add(1);
-                    isrenzhi.add(1);
-                } else if ("在职无跳槽意向".equals(searchs[i])) {
+
+                } else if ("无跳槽意向".equals(searchs[i])) {
                     isgo.add(0);
                 } else if ("不在职".equals(searchs[i])) {
+                    isrenzhi.add(0);
+                }else if ("在职".equals(searchs[i])) {
                     isrenzhi.add(1);
                 } else {
                     pamMap.put("name", searchs[i]);
                 }
             }
         }
+
         pamMap.put("typeid", parmTypes);
         pamMap.put("xueli;", parmXueli);
         pamMap.put("isgo;", isgo);
         pamMap.put("isrenzhi;", isrenzhi);
         List<Info> infoList = infoService.getList(0, 8, pamMap);
+
+        pamMap.put("typeid",parmTypes);
+        pamMap.put("xueli",parmXueli);
+        pamMap.put("isgo",isgo);
+        pamMap.put("isrenzhi",isrenzhi);
+        List<Info> infolist=infoService.getList(0,8,pamMap);
+
 
         model.addAttribute("search", search);
         model.addAttribute("count", infoService.getCountBysearch(pamMap));

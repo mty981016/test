@@ -18,6 +18,8 @@ public interface InfoMapper extends MyMapper<Info> {
 
     Info findByid(int id);
 
+    int getCount();
+
     List<Info> getMyLikeById(int id, int curr, int limit);
 
     List<Info> getInfoByLevel(int level, int curr, int limit);

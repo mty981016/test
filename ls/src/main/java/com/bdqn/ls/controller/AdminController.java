@@ -1,5 +1,6 @@
 package com.bdqn.ls.controller;
 
+import com.bdqn.ls.dao.SearchlisiMapper;
 import com.bdqn.ls.pojo.Admin;
 import com.bdqn.ls.pojo.Info;
 import com.bdqn.ls.service.InfoService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -63,5 +65,21 @@ public class AdminController {
     public String loginOut(HttpSession session, Model model) {
         session.removeAttribute("admin");
         return "index";
+    }
+ /*   @RequestMapping("getSearchlisi")
+    @ResponseBody
+    public String getSearchlisi(HttpSession session){
+        System.out.println("获取查询历史");
+        Admin admin=(Admin)session.getAttribute("admin");
+        admin.setSearchlisiList(searchlisiService.findByadminid(admin.getId()));
+        System.out.println(admin.getSearchlisiList().size()+"*************");
+        return "1";
+    }*/
+    @RequestMapping("delSearchlisi")
+    @ResponseBody
+    public String delSearchlisi(HttpSession session){
+        System.out.println("ssss");
+        searchlisiService.delSearchlisi(((Admin)session.getAttribute("admin")).getId());
+        return "1";
     }
 }

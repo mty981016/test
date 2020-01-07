@@ -25,8 +25,6 @@ public class AdminServiceImpl implements AdminService {
     private MylikeMapper likeMapper;
     @Autowired
     private InfoMapper infoMapper;
-    @Autowired
-    private SearchlisiMapper searchlisiMapper;
 
 
     @Override

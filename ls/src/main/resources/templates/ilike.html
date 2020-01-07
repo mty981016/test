@@ -44,7 +44,7 @@
                 <legend>我的收藏</legend>
             </fieldset>
             <ul>
-                <li class="likelist" th:each="info:${session.admin.getLikes()}" onclick="todetails()">
+                <li class="likelist"  th:each="info:${session.admin.getLikes()}" onclick="todetails()">
                     <input class="infoid" type="hidden" th:value="${info.getId()}">
                     <img th:src="${info.getPhoto()}" alt="图片显示异常" title="点击看详情"
                          style="margin-right: 10px;float: left;border-right: #e6e6e6 solid 1.5px" width="120"
@@ -76,7 +76,7 @@
     function todetails() {
         var id = $(".infoid").val();
         alert("555" + id);
-        location.href = "/info/todetails?id=" + id;
+     location.href = "/info/todetails?id=" + id;
     }
 
     layui.use('element', function () {

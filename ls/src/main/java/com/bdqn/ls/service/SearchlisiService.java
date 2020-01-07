@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface SearchlisiService {
     List<Searchlisi> findByadminid(int id);
+    int delSearchlisi(int adminid);
 }
